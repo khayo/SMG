@@ -1,0 +1,33 @@
+0	1	mikroCPIC1618.exe -MSF -DBG -pP18F4550 -GC -DL -O11111114 -fo8 -N"C:\Users\khayo\Desktop\TCC\MikroC\MyProject.mcppi" -SP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\Defs\" -SP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\uses\P18\" -SP"C:\Users\khayo\Desktop\TCC\MikroC\" -SP"C:\Users\khayo\Desktop\" -IP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\uses\P18\" -IP"C:\Users\khayo\Desktop\TCC\MikroC\" "MyProject.c" "__Lib_Math.mcl" "__Lib_MathDouble.mcl" "__Lib_System.mcl" "__Lib_Delays.mcl"	 
+hint: 0	1139	Available RAM: 2027 [bytes], Available ROM: 32768 [bytes]	 
+diagnostics: 0	122	Compilation Started	__Lib_Delays.c
+diagnostics: 172	123	Compiled Successfully	__Lib_Delays.c
+diagnostics: 0	122	Compilation Started	MyProject.c
+error: 32	324	Undeclared identifier 'ANSEL' in expression	MyProject.c
+error: 33	324	Undeclared identifier 'ANSELH' in expression	MyProject.c
+error: 34	324	Undeclared identifier 'C1ON_bit' in expression	MyProject.c
+error: 35	324	Undeclared identifier 'C2ON_bit' in expression	MyProject.c
+error: 37	324	Undeclared identifier 'Glcd_Init' in expression	MyProject.c
+error: 38	324	Undeclared identifier 'Glcd_Fill' in expression	MyProject.c
+error: 42	324	Undeclared identifier 'Glcd_Image' in expression	MyProject.c
+error: 46	324	Undeclared identifier 'Glcd_Fill' in expression	MyProject.c
+error: 48	324	Undeclared identifier 'Glcd_Box' in expression	MyProject.c
+error: 49	324	Undeclared identifier 'Glcd_Rectangle' in expression	MyProject.c
+error: 50	324	Undeclared identifier 'Glcd_Line' in expression	MyProject.c
+error: 55	324	Undeclared identifier 'Glcd_V_Line' in expression	MyProject.c
+error: 56	324	Undeclared identifier 'Glcd_H_Line' in expression	MyProject.c
+error: 61	324	Undeclared identifier 'Glcd_Fill' in expression	MyProject.c
+error: 63	324	Undeclared identifier 'Glcd_Set_Font' in expression	MyProject.c
+error: 65	324	Undeclared identifier 'Glcd_Write_Text' in expression	MyProject.c
+error: 68	324	Undeclared identifier 'Glcd_Circle' in expression	MyProject.c
+error: 71	324	Undeclared identifier 'Glcd_Box' in expression	MyProject.c
+error: 75	324	Undeclared identifier 'Glcd_Fill' in expression	MyProject.c
+error: 77	324	Undeclared identifier 'Glcd_Set_Font' in expression	MyProject.c
+error: 79	324	Undeclared identifier 'Glcd_Write_Text' in expression	MyProject.c
+error: 82	324	Undeclared identifier 'Glcd_Set_Font' in expression	MyProject.c
+error: 84	324	Undeclared identifier 'Glcd_Write_Text' in expression	MyProject.c
+error: 87	324	Undeclared identifier 'Glcd_Set_Font' in expression	MyProject.c
+error: 89	324	Undeclared identifier 'Glcd_Write_Text' in expression	MyProject.c
+error: 92	324	Undeclared identifier 'Glcd_Set_Font' in expression	MyProject.c
+error: 94	324	Undeclared identifier 'Glcd_Write_Text' in expression	MyProject.c
+error: 0	102	Finished (with errors): 07 jun 2019, 00:58:19	MyProject.mcppi

@@ -1,0 +1,12 @@
+0	1	mikroCPIC1618.exe -MSF -DBG -pP18F4550 -GC -DL -O11111114 -fo20 -N"C:\Users\khayo\Desktop\TCC\MikroC\TCC.mcppi" -SP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\Defs\" -SP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\uses\P18\" -SP"C:\Users\khayo\Desktop\TCC\MikroC\" -IP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\uses\P18\" "TCC.c" "__Lib_Math.mcl" "__Lib_MathDouble.mcl" "__Lib_System.mcl" "__Lib_Delays.mcl" "__Lib_CString.mcl" "__Lib_Conversions.mcl" "__Lib_ADC_A_D.mcl" "__Lib_UART_c67.mcl" "__Lib_GlcdFonts.mcl" "__Lib_Glcd.mcl"	 
+hint: 0	1139	Available RAM: 2027 [bytes], Available ROM: 32768 [bytes]	 
+diagnostics: 0	122	Compilation Started	TCC.c
+diagnostics: 903	123	Compiled Successfully	TCC.c
+diagnostics: 0	127	All files Compiled in 125 ms	 
+hint: 0	1144	Used RAM (bytes): 1073 (53%)  Free RAM (bytes): 954 (47%)	Used RAM (bytes): 1073 (53%)  Free RAM (bytes): 954 (47%)
+hint: 0	1144	Used ROM (bytes): 17046 (52%)  Free ROM (bytes): 15722 (48%)	Used ROM (bytes): 17046 (52%)  Free ROM (bytes): 15722 (48%)
+diagnostics: 0	125	Project Linked Successfully	TCC.mcppi
+hint: 0	1004	COFF file successfully generated	COFF file successfully generated
+diagnostics: 0	128	Linked in 1156 ms	 
+diagnostics: 0	129	Project 'TCC.mcppi' completed: 1313 ms	 
+diagnostics: 0	103	Finished successfully: 22 set 2019, 17:28:09	TCC.mcppi
