@@ -1,5 +1,7 @@
 # SMG - Sistema de Monitoramento de Geradores
 
-## Monografia do projeto.
+## Monograia d poeto. 
 
-Este é o arquivo da monografia do projeto.
+Este é o aquivo da moografia do pojeto.
+
+Corrija os erros de ortografia e apague esta linha
