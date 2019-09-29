@@ -1,5 +1,5 @@
-# MB na Monografia
+# SMG - Sistema de Monitoramento de Geradores
 
-### Ples, vc tem que dar aula irmao
+## Monografia do projeto.
 
-este é o arquivo que o ples tem que dar aula
+Este é o arquivo da monografia do projeto.
