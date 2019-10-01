@@ -209,6 +209,7 @@ main
 				SETFUN32
 			double2longint
 				SETIOV3224
+		Mul_32x32_U
 		longint2double
 			NRM4032
 				SETFUN32

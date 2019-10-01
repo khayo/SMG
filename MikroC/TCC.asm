@@ -1284,8 +1284,15 @@ _exibe_temperatura:
 	MOVWF       exibe_temperatura_ajuste_L0+0 
 	MOVLW       0
 	MOVWF       exibe_temperatura_ajuste_L0+1 
-;TCC.c,612 :: 		store_temp = calcula_temperatura();
+;TCC.c,612 :: 		store_temp = calcula_temperatura()*5;
 	CALL        _calcula_temperatura+0, 0
+	MOVLW       5
+	MOVWF       R4 
+	MOVLW       0
+	MOVWF       R5 
+	MOVWF       R6 
+	MOVWF       R7 
+	CALL        _Mul_32x32_U+0, 0
 	CALL        _longint2double+0, 0
 	MOVF        R0, 0 
 	MOVWF       _store_temp+0 

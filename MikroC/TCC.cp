@@ -1,5 +1,5 @@
-#line 1 "C:/Users/khayo/Desktop/TCC/MikroC/TCC.c"
-#line 24 "C:/Users/khayo/Desktop/TCC/MikroC/TCC.c"
+#line 1 "C:/TCC/SMG/MikroC/TCC.c"
+#line 24 "C:/TCC/SMG/MikroC/TCC.c"
  const code char EMER[1024] = {
  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -18,7 +18,7 @@
 
 
 char GLCD_DataPort at PORTD;
-#line 54 "C:/Users/khayo/Desktop/TCC/MikroC/TCC.c"
+#line 54 "C:/TCC/SMG/MikroC/TCC.c"
 sbit GLCD_CS1 at RB1_bit;
 sbit GLCD_CS2 at RB0_bit;
 sbit GLCD_RS at RB2_bit;
@@ -39,10 +39,10 @@ sbit GLCD_RST_Direction at TRISB.B5;
 
 
 sbit BTN_EMERGENCIA at PORTC.B2;
-#line 85 "C:/Users/khayo/Desktop/TCC/MikroC/TCC.c"
+#line 85 "C:/TCC/SMG/MikroC/TCC.c"
 sbit RELE_REDE at PORTE.B0;
 sbit RELE_GERADOR at PORTE.B1;
-#line 101 "C:/Users/khayo/Desktop/TCC/MikroC/TCC.c"
+#line 101 "C:/TCC/SMG/MikroC/TCC.c"
 char txt_botao[7];
 int botao;
 int ultimo_botao;
@@ -64,7 +64,7 @@ int carga;
 
 long tensao_rede_r;
 float tensao_anterior_rede_r;
-#line 129 "C:/Users/khayo/Desktop/TCC/MikroC/TCC.c"
+#line 129 "C:/TCC/SMG/MikroC/TCC.c"
 float tensaoVcc;
 float store_Vcc;
 char tensao_VccAnterior[7];
@@ -72,7 +72,7 @@ char txt_tensao_vcc[7];
 
 
 float corrente_rede_r;
-#line 143 "C:/Users/khayo/Desktop/TCC/MikroC/TCC.c"
+#line 143 "C:/TCC/SMG/MikroC/TCC.c"
 float temp_motor;
 float temp_anterior_motor;
 float store_temp;
@@ -94,7 +94,7 @@ char *menu5;
 
 char txt_tensao_rede_r[7];
 char uart_rd;
-#line 184 "C:/Users/khayo/Desktop/TCC/MikroC/TCC.c"
+#line 184 "C:/TCC/SMG/MikroC/TCC.c"
 void desliga_carga();
 
 
@@ -102,7 +102,7 @@ void liga_rede();
 
 
 void liga_gerador();
-#line 210 "C:/Users/khayo/Desktop/TCC/MikroC/TCC.c"
+#line 210 "C:/TCC/SMG/MikroC/TCC.c"
 void serial_transferencia();
 
 void serial_menu();
@@ -112,7 +112,7 @@ void serial_emergencia();
 void serial_principal();
 
 void exibe_tensaoVcc_terminal();
-#line 236 "C:/Users/khayo/Desktop/TCC/MikroC/TCC.c"
+#line 236 "C:/TCC/SMG/MikroC/TCC.c"
 void tratamento_botoes();
 
 
@@ -126,7 +126,7 @@ void tela_tensaoVCC();
 
 
 void emergencia();
-#line 268 "C:/Users/khayo/Desktop/TCC/MikroC/TCC.c"
+#line 268 "C:/TCC/SMG/MikroC/TCC.c"
 void exibe_tensaoVcc();
 
 
@@ -140,9 +140,9 @@ void exibe_temperatura();
 
 
 long calcula_temperatura();
-#line 291 "C:/Users/khayo/Desktop/TCC/MikroC/TCC.c"
+#line 291 "C:/TCC/SMG/MikroC/TCC.c"
 void calibra_botoes();
-#line 300 "C:/Users/khayo/Desktop/TCC/MikroC/TCC.c"
+#line 300 "C:/TCC/SMG/MikroC/TCC.c"
 void liga_gmg();
 
 
@@ -153,7 +153,7 @@ void parada_emergencia();
 
 
 void avisos();
-#line 349 "C:/Users/khayo/Desktop/TCC/MikroC/TCC.c"
+#line 349 "C:/TCC/SMG/MikroC/TCC.c"
 void main (void)
 {
 
@@ -417,7 +417,7 @@ void exibe_temperatura(){
  int ajuste = 5;
  float anterior;
 
- store_temp = calcula_temperatura();
+ store_temp = calcula_temperatura()*5;
  temp_motor = (store_temp/1023)*100;
  FloatToStr_FixLen(temp_motor, txt_temp_motor, 4);
  ltrim(txt_temp_motor);
@@ -629,7 +629,7 @@ void serial_menu(){
  UART1_write_text("MODO EMERGENCIA SÓ PODE SER DESATIVADO LOCALMENTE");
  UART1_Write(10);
  UART1_Write(13);
-#line 828 "C:/Users/khayo/Desktop/TCC/MikroC/TCC.c"
+#line 828 "C:/TCC/SMG/MikroC/TCC.c"
  }
  if(uart_rd == 'H'){
  serial_principal();
