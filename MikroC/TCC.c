@@ -625,7 +625,6 @@ void exibe_temperatura(){
 }
 
 
-
 void exibe_tensaoVcc_terminal(){
      int ajuste = 15;
      float anterior;
