@@ -539,20 +539,52 @@ void tratamento_botoes(){
 
  }
 
- if(botao >= 80 && botao <= 100){
-    liga_rede();
+ if(botao >= 80 && botao <= 100){                                       //Botão liga gerador
+    liga_gerador();
  }
  
- if(botao >= 170 && botao <= 190){
+ if(botao >= 120 && botao <= 140){                                      //Botão desliga carga
     desliga_carga();
  }
+ 
+ if(botao >= 170 && botao <= 190){                                      //Botão liga rede
+    liga_rede();
+ }
 
- if(botao >= 310 && botao <= 330){
+ if(botao >= 200 && botao <= 220){                                      //Botão parar gerador
+ 
+ }
+ 
+ if(botao >= 230 && botao <= 240){                                      //Botão parte gerador
     liga_gerador();
+ }
+
+ if(botao >= 310 && botao <= 330){                                      //Botão Automático
 
  }
 
- if(botao >= 980 && botao <= 1000){
+ if(botao >= 590 && botao <= 610){                                      //Botão Manual
+    Glcd_Write_Text_Adv("liga calibracao", 5, 30);
+    calibrar = 1;                                                       //ativa o modo calibração
+ }
+
+ if(botao >= 680 && botao <= 700) {                                     //Botão Reset
+    Glcd_Write_Text_Adv("desliga calibracao", 5, 30);
+    calibrar = 0;                                                       //desativa o modo calibração
+ }
+
+ if(botao >= 830 && botao <= 850){                                      //Botão >> (direita)
+    Glcd_Write_Text_Adv("direita", 5, 30);
+    if(pos_painel < max_tela){
+        pos_painel++;
+    }
+    else{
+        pos_painel = 0;
+    }
+    carregar_tela = 1;                                                  // esta variavel faz com que a tela seja carregada apanas uma vez
+ }
+
+ if(botao >= 980 && botao <= 1000){                                     //Botão << (esquerda)
     Glcd_Write_Text_Adv("esquerda", 5, 30);
     if(pos_painel > 0){
         pos_painel--;
@@ -563,27 +595,7 @@ void tratamento_botoes(){
     carregar_tela = 1;                                                 // esta variavel faz com que a tela seja carregada apanas uma vez
 
  }
- 
- if (botao >= 830 && botao <= 850){
-    Glcd_Write_Text_Adv("direita", 5, 30);
-    if(pos_painel < max_tela){
-        pos_painel++;
-    }
-    else{
-        pos_painel = 0;
-    }
-    carregar_tela = 1;                                                  // esta variavel faz com que a tela seja carregada apanas uma vez
- }
- 
- if (botao >= 590 && botao <= 610){
-    Glcd_Write_Text_Adv("liga calibracao", 5, 30);
-    calibrar = 1;                                                       //ativa o modo calibração
- }
- 
- if (botao >= 680 && botao <= 700) {
-    Glcd_Write_Text_Adv("desliga calibracao", 5, 30);
-    calibrar = 0;                                                       //desativa o modo calibração
- }
+
 }
 
 void exibe_tensaoVcc(){
