@@ -494,7 +494,6 @@ void emergencia(){
 void desliga_carga(){
       RELE_GERADOR = 0;
       RELE_REDE = 1;
-      Glcd_Write_Text_Adv("desliga", 5, 30);
       carregar_barraCarga = 1;
       carga = 0;
       delay_ms(20);
@@ -503,7 +502,6 @@ void desliga_carga(){
 void liga_rede(){
       if(RELE_GERADOR == 0 && RELE_REDE == 1){
           RELE_REDE =0;
-          Glcd_Write_Text_Adv("rede", 5, 30);
           carregar_barraCarga = 1;
           carga = 1;
           delay_ms(20);
@@ -513,7 +511,6 @@ void liga_rede(){
 void liga_gerador(){
       if(RELE_GERADOR == 0 && RELE_REDE == 1){
           RELE_GERADOR = 1;
-          Glcd_Write_Text_Adv("gerador", 5, 30);
           carregar_barraCarga = 1;
           carga = 2;
           delay_ms(20);
@@ -522,59 +519,60 @@ void liga_gerador(){
 
 void tratamento_botoes(){
  botao = adc_read(1);
- if(botao > 10){                                                       //Verifica se algum botão foi apertado
-    Glcd_Box(5, 30, 50, 40, 0);                                        //Caso algum botão tenha sido pressionado, limpa a area de título
+ if(botao > 10){                                                       // Verifica se algum botão foi apertado
+    Glcd_Box(5, 30, 80, 40, 0);                                        // Caso algum botão tenha sido pressionado, limpa a area de título
  }
 
- if(calibrar == 1){                                                     //verifica se modo calibração está ativo
+ if(calibrar == 1){                                                     // verifica se modo calibração está ativo
     if(botao != ultimo_botao){
-         Glcd_Box(5, 20, 100, 40, 0);                                   //limpa area do texto onde eaparecerá valor e nome do botão
+         Glcd_Box(5, 20, 100, 40, 0);                                   // limpa area do texto onde eaparecerá valor e nome do botão
          ultimo_botao = botao;
     }
-    intToStr(botao, txt_botao);                                         //transforma o valor de adc em string
+    intToStr(botao, txt_botao);                                         // transforma o valor de adc em string
     ltrim(txt_botao);
-    Glcd_Write_Text_Adv(txt_botao, 40, 20);                             //exibe o valor do botão
+    Glcd_Write_Text_Adv(txt_botao, 40, 20);                             // exibe o valor do botão
     Glcd_Write_Text_Adv("botao:", 5, 20);
     delay_ms(50);
 
  }
 
- if(botao >= 80 && botao <= 100){                                       //Botão liga gerador
+ if(botao >= 80 && botao <= 100){                                       // Botão liga gerador
     liga_gerador();
+    Glcd_Write_Text_Adv("Gerador", 5, 30);
  }
  
- if(botao >= 120 && botao <= 140){                                      //Botão desliga carga
+ if(botao >= 120 && botao <= 140){                                      // Botão desliga carga
     desliga_carga();
+    Glcd_Write_Text_Adv("Desliga Carga", 5, 30);
  }
  
- if(botao >= 170 && botao <= 190){                                      //Botão liga rede
+ if(botao >= 170 && botao <= 190){                                      // Botão liga rede
     liga_rede();
+    Glcd_Write_Text_Adv("Rede", 5, 30);
  }
 
- if(botao >= 200 && botao <= 220){                                      //Botão parar gerador
+ if(botao >= 200 && botao <= 220){                                      // Botão parar gerador
+    Glcd_Write_Text_Adv("Parar GMG", 5, 30);
+ }
  
- }
- 
- if(botao >= 230 && botao <= 240){                                      //Botão parte gerador
-    liga_gerador();
+ if(botao >= 230 && botao <= 240){                                      // Botão parte gerador
+   Glcd_Write_Text_Adv("Partir GMG", 5, 30);
  }
 
- if(botao >= 310 && botao <= 330){                                      //Botão Automático
-
+ if(botao >= 310 && botao <= 330){                                      // Botão Automático
+   Glcd_Write_Text_Adv("Automatico", 5, 30);
  }
 
- if(botao >= 590 && botao <= 610){                                      //Botão Manual
-    Glcd_Write_Text_Adv("liga calibracao", 5, 30);
-    calibrar = 1;                                                       //ativa o modo calibração
+ if(botao >= 590 && botao <= 610){                                      // Botão Manual
+    Glcd_Write_Text_Adv("Manual", 5, 30);
  }
 
- if(botao >= 680 && botao <= 700) {                                     //Botão Reset
-    Glcd_Write_Text_Adv("desliga calibracao", 5, 30);
-    calibrar = 0;                                                       //desativa o modo calibração
+ if(botao >= 680 && botao <= 700) {                                     // Botão Reset
+    Glcd_Write_Text_Adv("Reset", 5, 30);
  }
 
- if(botao >= 830 && botao <= 850){                                      //Botão >> (direita)
-    Glcd_Write_Text_Adv("direita", 5, 30);
+ if(botao >= 830 && botao <= 850){                                      // Botão >> (direita)
+    Glcd_Write_Text_Adv("Direita", 5, 30);
     if(pos_painel < max_tela){
         pos_painel++;
     }
@@ -583,9 +581,15 @@ void tratamento_botoes(){
     }
     carregar_tela = 1;                                                  // esta variavel faz com que a tela seja carregada apanas uma vez
  }
+ 
+  if(botao >= 880 && botao <= 900){                                     // Botão reset + >>(direita)
+    calibrar = ~calibrar;                                               // Aciona o modo de calibração do teclado
+    delay_ms(2000);
+    
+ }
 
- if(botao >= 980 && botao <= 1000){                                     //Botão << (esquerda)
-    Glcd_Write_Text_Adv("esquerda", 5, 30);
+ if(botao >= 980 && botao <= 1000){                                     // Botão << (esquerda)
+    Glcd_Write_Text_Adv("Esquerda", 5, 30);
     if(pos_painel > 0){
         pos_painel--;
     }
@@ -608,8 +612,7 @@ void exibe_tensaoVcc(){
      ltrim(txt_tensao_vcc);
      
      if(store_Vcc >= anterior+ajuste || store_Vcc <= anterior-ajuste){
-       Glcd_Box(70, 15, 89, 30, 0);
-       strcpy(tensao_VccAnterior, txt_tensao_Vcc);
+       Glcd_Box(70, 15, 89, 30, 0);                                               // Aciona o modo de calibração do teclado
        Glcd_Write_Text_Adv("Bateria: ", 10, 15);
        Glcd_Write_Text_Adv(txt_tensao_Vcc, 70, 15);
        Glcd_Write_Text_Adv("V ", 90, 15);

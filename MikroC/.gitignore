@@ -1,6 +1,10 @@
+*.asm
 *.cof
+*.cp
 *.dbg
+*.dlt
 *.log
 *.lst
 *.mcl
 *.ini
+*.txt
