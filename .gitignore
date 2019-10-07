@@ -1,0 +1,7 @@
+**/*.cof
+**/*.dbg
+**/*.log
+**/*.lst
+**/*.mcl
+**/*.pdsbak
+**/*.workspace

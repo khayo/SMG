@@ -585,7 +585,6 @@ void tratamento_botoes(){
   if(botao >= 880 && botao <= 900){                                     // Botão reset + >>(direita)
     calibrar = ~calibrar;                                               // Aciona o modo de calibração do teclado
     delay_ms(2000);
-    
  }
 
  if(botao >= 980 && botao <= 1000){                                     // Botão << (esquerda)
@@ -597,7 +596,6 @@ void tratamento_botoes(){
         pos_painel = max_tela;
     }
     carregar_tela = 1;                                                 // esta variavel faz com que a tela seja carregada apanas uma vez
-
  }
 
 }
