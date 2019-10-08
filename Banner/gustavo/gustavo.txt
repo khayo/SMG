@@ -1,0 +1,2 @@
+em relação a foto do display, não sei devemos usar uma foto real do display que dificilmente vai ficar boa ou se devemos usar um print do display do Proteus. O que você acha melhor?
+Sobre os sensor, acredito que o sensor mais "legal" para colocar, seja realmente o sensor de corrente, mas procure uma foto dele pela internet que as fotos que a gente tirou vão estragar o banner. 
