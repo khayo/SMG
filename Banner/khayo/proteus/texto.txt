@@ -1,0 +1,3 @@
+utilizamos ferramentas modernas e avançadas para o desenvolvimento do hardware, visando menor custo de projeto possibilitando os mais diversos teste antes de efetivamente ser necessário a confeção de um circuito físico
+
+precisa melhorar bastante
