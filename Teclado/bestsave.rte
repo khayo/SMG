@@ -1,0 +1,270 @@
+ (routes 
+  (resolution mm 100000)
+  (parser
+  )
+  (parser
+  )
+  (structure_out
+   (layer TOP (type signal)
+   )
+   (layer I1 (type signal)
+   )
+   (layer I2 (type signal)
+   )
+   (layer I3 (type signal)
+   )
+   (layer I4 (type signal)
+   )
+   (layer I5 (type signal)
+   )
+   (layer I6 (type signal)
+   )
+   (layer I7 (type signal)
+   )
+   (layer I8 (type signal)
+   )
+   (layer I9 (type signal)
+   )
+   (layer I10 (type signal)
+   )
+   (layer I11 (type signal)
+   )
+   (layer I12 (type signal)
+   )
+   (layer I13 (type signal)
+   )
+   (layer I14 (type signal)
+   )
+   (layer BOT (type signal)
+   )
+  )
+  (library_out
+  (padstack $VIA#0_SIGNAL
+   (shape (circ TOP 76200 0 0))
+   (shape (circ I1 76200 0 0))
+   (shape (circ I2 76200 0 0))
+   (shape (circ I3 76200 0 0))
+   (shape (circ I4 76200 0 0))
+   (shape (circ I5 76200 0 0))
+   (shape (circ I6 76200 0 0))
+   (shape (circ I7 76200 0 0))
+   (shape (circ I8 76200 0 0))
+   (shape (circ I9 76200 0 0))
+   (shape (circ I10 76200 0 0))
+   (shape (circ I11 76200 0 0))
+   (shape (circ I12 76200 0 0))
+   (shape (circ I13 76200 0 0))
+   (shape (circ I14 76200 0 0))
+   (shape (circ BOT 76200 0 0))
+  )
+  (padstack $VIA#0_POWER
+   (shape (circ TOP 76200 0 0))
+   (shape (circ I1 76200 0 0))
+   (shape (circ I2 76200 0 0))
+   (shape (circ I3 76200 0 0))
+   (shape (circ I4 76200 0 0))
+   (shape (circ I5 76200 0 0))
+   (shape (circ I6 76200 0 0))
+   (shape (circ I7 76200 0 0))
+   (shape (circ I8 76200 0 0))
+   (shape (circ I9 76200 0 0))
+   (shape (circ I10 76200 0 0))
+   (shape (circ I11 76200 0 0))
+   (shape (circ I12 76200 0 0))
+   (shape (circ I13 76200 0 0))
+   (shape (circ I14 76200 0 0))
+   (shape (circ BOT 76200 0 0))
+  )
+  )
+  (network_out
+   (Net #00000 
+   (rule
+   )
+   (wire (path BOT 101600  373380 -3583940 -884531 -3583940 -884531 -4572000
+     -2222500 -4572000)
+    (connect (terminal pin 1K-1) (terminal pin 4.7K-0))
+   )
+   (wire (path BOT 101600  2987040 -4030980 1016000 -4030980 1016000 -3583940
+     373380 -3583940)
+    (connect (terminal pin SAIDAS-1) (terminal pin 1K-1))
+   )
+   (wire (path BOT 101600  -7302500 -4577080 -7302500 -4597400 -7937500 -4597400)
+    (connect (terminal pin 220-0) (terminal pin 3.9K-0))
+   )
+   (wire (path BOT 101600  -5397500 -4572000 -5397500 -4577080 -6032500 -4577080)
+    (connect (terminal pin 470-0) (terminal pin 3.3K-0))
+   )
+   (wire (path BOT 101600  -2857500 -4572000 -2222500 -4572000)
+    (connect (terminal pin 6.8K-0) (terminal pin 4.7K-0))
+   )
+   (wire (path BOT 101600  -4762500 -4572000 -4127500 -4572000)
+    (connect (terminal pin 680-0) (terminal pin 2.2K-0))
+   )
+   (wire (path BOT 101600  -5397500 -4572000 -4762500 -4572000)
+    (connect (terminal pin 470-0) (terminal pin 680-0))
+   )
+   (wire (path BOT 101600  -3492500 -4572000 -2857500 -4572000)
+    (connect (terminal pin 10K-0) (terminal pin 6.8K-0))
+   )
+   (wire (path BOT 101600  -4127500 -4572000 -3492500 -4572000)
+    (connect (terminal pin 2.2K-0) (terminal pin 10K-0))
+   )
+   (wire (path BOT 101600  -6667500 -4577080 -6032500 -4577080)
+    (connect (terminal pin 33-0) (terminal pin 3.3K-0))
+   )
+   (wire (path BOT 101600  -7302500 -4577080 -6667500 -4577080)
+    (connect (terminal pin 220-0) (terminal pin 33-0))
+   )
+   )
+   (Net #00001 
+   (rule
+   )
+   (wire (path BOT 101600  -9918700 -2809240 -9918700 -2814320 -9560560 -2456180
+     -8407400 -2456180 -7302500 -3561080)
+    (connect (terminal pin DIR-0) (terminal pin 220-1))
+    (type protect)
+   )
+   )
+   (Net #00002 
+   (rule
+   )
+   (wire (path BOT 101600  -314960 4747260 -5397500 4747260 -5397500 -3556000)
+    (connect (terminal pin RST-0) (terminal pin 470-1))
+   )
+   )
+   (Net #00003 
+   (rule
+   )
+   (wire (path BOT 101600  -299960 1699260 -2222500 1699260 -2222500 -3556000)
+    (connect (terminal pin REDE-0) (terminal pin 4.7K-1))
+   )
+   )
+   (Net #00004 
+   (rule
+   )
+   (wire (path BOT 101600  1732040 1699260 1117600 1699260 1117600 1930400
+     -2857500 1930400 -2857500 -3556000)
+    (connect (terminal pin DESLIGA-0) (terminal pin 6.8K-1))
+   )
+   )
+   (Net #00005 
+   (rule
+   )
+   (wire (path BOT 101600  3764040 1699260 3149600 1699260 3149600 2133600
+     -3492500 2133600 -3492500 -3556000)
+    (connect (terminal pin GERADOR-0) (terminal pin 10K-1))
+   )
+   )
+   (Net #00006 
+   (rule
+   )
+   (wire (path BOT 101600  373380 -4599940 1016000 -4599940 1016000 -4427220
+     2987040 -4427220)
+    (connect (terminal pin 1K-0) (terminal pin SAIDAS-2))
+   )
+   )
+   (Net #00007 
+   (rule
+   )
+   (wire (path BOT 101600  -11950700 -4843780 -12395200 -4399280 -12395200 -2545080
+     -11882120 -2032000 -7561580 -2032000 -6032500 -3561080)
+    (connect (terminal pin PARTIR-0) (terminal pin 3.3K-1))
+    (type protect)
+   )
+   )
+   (Net #00008 
+   (rule
+   )
+   (wire (path BOT 101600  -9918700 -4843780 -9918700 -3962400 -8534400 -3962400
+     -8534400 -3581400 -7937500 -3581400)
+    (connect (terminal pin PARAR-0) (terminal pin 3.9K-1))
+   )
+   )
+   (Net #00009 
+   (rule
+   )
+   (wire (path BOT 101600  -11950700 -2811780 -11950700 -2816860 -11361420 -2227580
+     -8001000 -2227580 -6667500 -3561080)
+    (connect (terminal pin ESQ-0) (terminal pin 33-1))
+    (type protect)
+   )
+   )
+   (Net #00010 
+   (rule
+   )
+   (wire (path BOT 101600  1717040 4747260 1717040 4978400 -101600 4978400
+     -101600 3962400 -4762500 3962400 -4762500 -3556000)
+    (connect (terminal pin MANUAL-0) (terminal pin 680-1))
+   )
+   )
+   (Net #00011 
+   (rule
+   )
+   (wire (path BOT 101600  3749040 4747260 3352800 4747260 3352800 3356801
+     -4127500 3356801 -4127500 -3556000)
+    (connect (terminal pin AUTO-0) (terminal pin 2.2K-1))
+   )
+   )
+   (Net #00014 
+   (rule
+   )
+   (wire (path BOT 101600  -9268700 -3259240 -8331200 -3259240 -8331200 -3406140
+     -7721600 -3406140 -7721600 -3759200 -1590703 -3759200 -1590703 -3352800
+     1177347 -3352800 1177347 -3634740 2987040 -3634740)
+    (connect (terminal pin DIR-3) (terminal pin SAIDAS-0))
+   )
+   (wire (path BOT 101600  3048000 1016000 4064000 1016000 4064000 1249260)
+    (connect (terminal wire) (terminal wire))
+   )
+   (wire (path BOT 101600  4064000 1249260 4064000 3657600 4399040 3657600
+     4399040 4297260)
+    (connect (terminal wire) (terminal pin AUTO-3))
+   )
+   (wire (path BOT 101600  3048000 1016000 3048000 1249260 2382040 1249260)
+    (connect (terminal wire) (terminal pin DESLIGA-3))
+   )
+   (wire (path BOT 101600  -10972800 -3556000 -9652000 -3556000 -9652000 -3259240
+     -9268700 -3259240)
+    (connect (terminal wire) (terminal pin DIR-3))
+   )
+   (wire (path BOT 101600  3048000 812800 3048000 1016000)
+    (connect (terminal wire) (terminal wire))
+   )
+   (wire (path BOT 101600  3048000 812800 3048000 -1609204 2987040 -1609204
+     2987040 -3634740)
+    (connect (terminal wire) (terminal pin SAIDAS-0))
+   )
+   (wire (path BOT 101600  -11300700 -3261780 -10972800 -3261780 -10972800 -3556000)
+    (connect (terminal pin ESQ-3) (terminal wire))
+   )
+   (wire (path BOT 101600  -10972800 -5080000 -11300700 -5080000 -11300700 -5293780)
+    (connect (terminal wire) (terminal pin PARTIR-3))
+   )
+   (wire (path BOT 101600  4414040 1249260 4064000 1249260)
+    (connect (terminal pin GERADOR-3) (terminal wire))
+   )
+   (wire (path BOT 101600  2367040 4297260 2367040 4064000 1219200 4064000
+     1219200 4297260 335040 4297260)
+    (connect (terminal pin MANUAL-3) (terminal pin RST-3))
+   )
+   (wire (path BOT 101600  -10972800 -3556000 -10972800 -5080000)
+    (connect (terminal wire) (terminal wire))
+   )
+   (wire (path BOT 101600  4399040 4297260 4762500 4353560 4762500 5146040
+     3215820 5146040 2367040 4297260)
+    (connect (terminal pin AUTO-3) (terminal pin MANUAL-3))
+    (type protect)
+   )
+   (wire (path BOT 101600  2382040 1249260 2227160 1249260 1892300 914400
+     684900 914400 350040 1249260)
+    (connect (terminal pin DESLIGA-3) (terminal pin REDE-3))
+    (type protect)
+   )
+   (wire (path BOT 101600  -10972800 -5080000 -10429240 -5623560 -9598480 -5623560
+     -9268700 -5293780)
+    (connect (terminal wire) (terminal pin PARAR-3))
+    (type protect)
+   )
+   )
+  )
+ )
