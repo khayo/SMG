@@ -1,0 +1,7 @@
+SAIDAS
+
+1 = positivo
+
+2 = sinal
+
+3 = negativo
