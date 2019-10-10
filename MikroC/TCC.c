@@ -533,7 +533,7 @@ void tratamento_botoes(){
     intToStr(botao, txt_botao);                                         // transforma o valor de adc em string
     ltrim(txt_botao);
     Glcd_Write_Text_Adv(txt_botao, 40, 50);                             // exibe o valor do botão
-    Glcd_Write_Text_Adv("botao:", 5, 50);
+    Glcd_Write_Text_Adv("Botao:", 5, 50);
     delay_ms(50);
 
  }
