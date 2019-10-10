@@ -244,6 +244,8 @@ void tela_principal();
 //
 void tela_tensaoVCC();
 
+void tela_temperatura();
+
 //função para parada de emergência
 void emergencia();
 
@@ -434,7 +436,7 @@ void main (void)
                    case 1: tela(menu1);  break;
                    case 2: tela(menu2);  break;
                    case 3: tela(menu3);  break;
-                   case 4: tela(menu4); exibe_temperatura(); break;
+                   case 4: tela(menu4); tela_temperatura(); break;
                    case 5: tela(menu5); tela_tensaoVCC(); break;
                    }
               tratamento_botoes();
@@ -501,7 +503,7 @@ void desliga_carga(){
 
 void liga_rede(){
       if(RELE_GERADOR == 0 && RELE_REDE == 1){
-          RELE_REDE =0;
+          RELE_REDE = 0;
           carregar_barraCarga = 1;
           carga = 1;
           delay_ms(20);
@@ -525,13 +527,13 @@ void tratamento_botoes(){
 
  if(calibrar == 1){                                                     // verifica se modo calibração está ativo
     if(botao != ultimo_botao){
-         Glcd_Box(5, 20, 100, 40, 0);                                   // limpa area do texto onde eaparecerá valor e nome do botão
+         Glcd_Box(5, 50, 100, 60, 0);                                   // limpa area do texto onde eaparecerá valor e nome do botão
          ultimo_botao = botao;
     }
     intToStr(botao, txt_botao);                                         // transforma o valor de adc em string
     ltrim(txt_botao);
-    Glcd_Write_Text_Adv(txt_botao, 40, 20);                             // exibe o valor do botão
-    Glcd_Write_Text_Adv("botao:", 5, 20);
+    Glcd_Write_Text_Adv(txt_botao, 40, 50);                             // exibe o valor do botão
+    Glcd_Write_Text_Adv("botao:", 5, 50);
     delay_ms(50);
 
  }
@@ -573,6 +575,7 @@ void tratamento_botoes(){
 
  if(botao >= 830 && botao <= 850){                                      // Botão >> (direita)
     Glcd_Write_Text_Adv("Direita", 5, 30);
+    if(calibrar == 0){
     if(pos_painel < max_tela){
         pos_painel++;
     }
@@ -581,21 +584,28 @@ void tratamento_botoes(){
     }
     carregar_tela = 1;                                                  // esta variavel faz com que a tela seja carregada apanas uma vez
  }
+ }
  
   if(botao >= 880 && botao <= 900){                                     // Botão reset + >>(direita)
-    calibrar = ~calibrar;                                               // Aciona o modo de calibração do teclado
-    delay_ms(2000);
+    Glcd_Write_Text_Adv("Calibrar", 5, 30);
+    delay_ms(200);
+    calibrar = !calibrar;
+    if(calibrar == 0){
+         Glcd_Box(5, 50, 100, 60, 0);
+    }
  }
 
  if(botao >= 980 && botao <= 1000){                                     // Botão << (esquerda)
     Glcd_Write_Text_Adv("Esquerda", 5, 30);
-    if(pos_painel > 0){
-        pos_painel--;
-    }
-    else{
-        pos_painel = max_tela;
-    }
-    carregar_tela = 1;                                                 // esta variavel faz com que a tela seja carregada apanas uma vez
+    if(calibrar == 0){
+      if(pos_painel > 0){
+          pos_painel--;
+      }
+      else{
+          pos_painel = max_tela;
+      }
+      carregar_tela = 1;                                                 // esta variavel faz com que a tela seja carregada apanas uma vez
+   }
  }
 
 }
@@ -610,7 +620,7 @@ void exibe_tensaoVcc(){
      ltrim(txt_tensao_vcc);
      
      if(store_Vcc >= anterior+ajuste || store_Vcc <= anterior-ajuste){
-       Glcd_Box(70, 15, 89, 30, 0);                                               // Aciona o modo de calibração do teclado
+       Glcd_Box(70, 15, 89, 30, 0);
        Glcd_Write_Text_Adv("Bateria: ", 10, 15);
        Glcd_Write_Text_Adv(txt_tensao_Vcc, 70, 15);
        Glcd_Write_Text_Adv("V ", 90, 15);
@@ -618,16 +628,27 @@ void exibe_tensaoVcc(){
      }
 }
 
+long calcula_temperatura(){
+     unsigned char i;
+     float temp_store = 0;
+
+     for(i = 0; i < 100 ; i++){
+           temp_store += adc_read(0);
+     }
+
+     return(temp_store/100);
+}
+
 void exibe_temperatura(){
      int ajuste = 5;
      float anterior;
 
-     store_temp = calcula_temperatura()*5;
+     store_temp = calcula_temperatura();
      temp_motor = (store_temp/1023)*100;
      FloatToStr_FixLen(temp_motor, txt_temp_motor, 4);
      ltrim(txt_temp_motor);
 
-     if(store_temp >= anterior+ajuste || store_temp <= anterior-ajuste){
+     if(store_temp >= anterior|| store_temp <= anterior){
        Glcd_Box(70, 15, 89, 30, 0);
        strcpy(temp_motorAnterior, txt_temp_motor);
        Glcd_Write_Text_Adv("Temperatura: ", 10, 15);
@@ -636,7 +657,6 @@ void exibe_temperatura(){
        anterior = store_temp;
      }
 }
-
 
 void exibe_tensaoVcc_terminal(){
      int ajuste = 15;
@@ -689,17 +709,6 @@ void exibe_tensaoVca(){
        Glcd_Write_Text_Adv(txt_tensao_rede_r, 60, 5);
        Glcd_Write_Text_Adv("V", 80, 5);
      }
-}
-
-long calcula_temperatura(){
-     unsigned char i;
-     float temp_store = 0;
-
-     for(i = 0; i < 100 ; i++){
-           temp_store += adc_read(0);
-     }
-
-     return(temp_store/100);
 }
 
 void tela(char *_menu){
