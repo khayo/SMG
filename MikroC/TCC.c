@@ -40,11 +40,14 @@ Membros        :      Caio Pavan
 
 char GLCD_DataPort at PORTD;
 
+// Exemplo:  sbit NOME at PORTA.BIT (B0, B1, B2, B3, B4, B5, B6 OU B7)
+
 //*******************************
 // PORTA , do RA0 até RA6
 //*******************************
-// Exemplo:  sbit NOME at PORTA.BIT (B0, B1, B2, B3, B4, B5, B6 OU B7)
-
+sbit PRE_AQUEC at RA3_BIT;
+sbit SOLENOIDE at RA4_BIT;
+sbit MOTOR_PAR at RA5_BIT;
 
 //*******************************
 // PORTB , do RB0 até RB7
@@ -103,10 +106,6 @@ int botao;
 int ultimo_botao;
 int calibrar;
 
-//variavel auxiliar para terminal de emergencia
-int emerg;
-
-
 // Responsavel pela seleção de painel
 int pos_painel;
 int max_tela;
@@ -148,7 +147,6 @@ char txt_temp_motor[7];
 
 
 //constante para tela
-
 char *menu0;
 char *menu1;
 char *menu2;
@@ -165,15 +163,6 @@ char uart_rd;
 //=====================================================================================
 //                        DECLARAÇÃO DOS PROTÓTIPOS
 //=====================================================================================
-
-
-
-
-
-
-
-
-
 
 /*************************************************************
       INICIO DAS ROTINAS DE TRANSFERÊNCIA
@@ -194,33 +183,6 @@ void liga_gerador();
 *************************************************************/
 
 
-
-
-
-
-
-
-/*************************************************************
-      INICIO DAS ROTINAS DE CONTROLE SERIAL
-*************************************************************/
-// ESTAS OPÇÕES FICARÃO DESABILITADAS, MAS PODEM AJUDAR NO TRATAMENTO DE ALGUNS ERROS E ATÉ SERVIR PARA UMA POSSIVEL COMUNICAÇÃO REMOTA
-
-//Menus: cada rotina chamará um menu ou sub-menu, assim é possível fazer um melhor controlex
-
-/*void serial_transferencia();
-
-void serial_menu();
-
-void serial_emergencia();
-
-void serial_principal();
-
-void exibe_tensaoVcc_terminal();*/
-
-
-/*************************************************************
-      FIM DAS ROTINAS DE CONTROLE SERIAL
-*************************************************************/
 
 
 
@@ -272,9 +234,6 @@ void exibe_tensaoVcc();
 //Função de calculo de tensão continua
 long calcula_tensaoVcc();
 
-//função para leitura da tensão
-void exibe_tensaoVca();
-
 //função para exibição da temperatura
 void exibe_temperatura();
 
@@ -284,6 +243,9 @@ long calcula_temperatura();
 //função para leitura da corrente
 
 //função para leitura da frequência
+
+//função para leitura da tensão
+void exibe_tensaoVca();
 
 /*************************************************************
       FIM DA LEITURA DE SENSORES
@@ -379,7 +341,7 @@ void main (void)
 // 1 -> configura o BIT como Entrada
 
         //Port A, do RA0 até RA6
-        TRISA = 0b1111111;  // todos os BITs do PORTA estão configurados como entrada
+        TRISA = 0b11111111;  // todos os BITs do PORTA estão configurados como entrada
 
         //Port B, do RB0 até RB7
         //TRISB = 0b00000000; // todos os BITs do PORTB estão configurados como saída
@@ -405,16 +367,19 @@ void main (void)
         
         //Variavel de posição do painel
         pos_painel = 4;
+        
         //Esta variável é inciada em 1 e no final do laço while, passa para 0. Quando um botão de navegação é pressionado, ela é alterada para 1, dessa forma possibilitando entrar no laço if que contem o código da tela
         carregar_tela = 1;
 
         //mude este valor para 1 caso deseje calibrar os botões do painel, volte para 0 ao finalizar a calibração
         calibrar = 0;
-        //Botão virtual de emergencia
-        emerg = 0;
+        
         //mostra
         carga = 1;
         
+        PRE_AQUEC = 0;
+        SOLENOIDE = 0;
+        MOTOR_PAR = 0;
 //=====================================================================================
 //         Inicio do Loop principal
 //=====================================================================================
@@ -528,14 +493,17 @@ void tratamento_botoes(){
 
  if(botao >= 310 && botao <= 330){                                      // Botão Automático
    Glcd_Write_Text_Adv("Automatico", 5, 30);
+   SOLENOIDE = !SOLENOIDE;
  }
 
  if(botao >= 590 && botao <= 610){                                      // Botão Manual
     Glcd_Write_Text_Adv("Manual", 5, 30);
+    PRE_AQUEC = !PRE_AQUEC;
  }
 
  if(botao >= 680 && botao <= 700) {                                     // Botão Reset
     Glcd_Write_Text_Adv("Reset", 5, 30);
+    MOTOR_PAR = !MOTOR_PAR;
  }
 
  if(botao >= 830 && botao <= 850){                                      // Botão >> (direita)

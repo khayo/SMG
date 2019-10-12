@@ -366,7 +366,6 @@ eeip_bit
 eepgd
 eepgd_bit
 emer
-emerg
 emergencia
 endp0
 endp0_bit
@@ -803,6 +802,7 @@ menu2
 menu3
 menu4
 menu5
+motor_par
 mul_16x16_s
 mul_16x16_u
 mul_32x32_fp
@@ -954,6 +954,7 @@ ppbi_bit
 ppbrst
 ppbrst_bit
 pr2
+pre_aquec
 preinc0
 preinc1
 preinc2
@@ -1151,6 +1152,7 @@ sofie
 sofie_bit
 sofif
 sofif_bit
+solenoide
 spbrg
 spbrgh
 spen
