@@ -640,7 +640,7 @@ long calcula_temperatura(){
 }
 
 void exibe_temperatura(){
-     int ajuste = 5;
+     int ajuste = 1;
      float anterior;
 
      store_temp = calcula_temperatura()*5;
@@ -648,35 +648,14 @@ void exibe_temperatura(){
      FloatToStr_FixLen(temp_motor, txt_temp_motor, 4);
      ltrim(txt_temp_motor);
 
-     if(store_temp >= anterior|| store_temp <= anterior){
+     if(store_temp >= anterior + ajuste || store_temp <= anterior - ajuste){
        Glcd_Box(70, 15, 89, 30, 0);
        strcpy(temp_motorAnterior, txt_temp_motor);
        Glcd_Write_Text_Adv("Temperatura: ", 10, 15);
-       Glcd_Write_Text_Adv(txt_temp_motor, 70, 15);
-       Glcd_Write_Text_Adv("C ", 90, 15);
+       Glcd_Write_Text_Adv(txt_temp_motor, 72, 15);
+       Glcd_Write_Text_Adv("C ", 93, 15);
        anterior = store_temp;
      }
-}
-
-void exibe_tensaoVcc_terminal(){
-     int ajuste = 15;
-     float anterior;
-
-     store_Vcc = calcula_TensaoVcc();
-     tensaoVcc = (store_Vcc*20)/1023;
-     FloatToStr_FixLen(tensaoVcc, txt_tensao_vcc, 4);
-     ltrim(txt_tensao_vcc);
-
-     if(store_Vcc >= anterior+ajuste || store_Vcc <= anterior-ajuste){
-       strcpy(tensao_VccAnterior, txt_tensao_Vcc);
-       anterior = store_Vcc;
-       //UART1_write(12);
-     }
-       UART1_write_text("Bateria: ");
-       UART1_write_text(txt_tensao_Vcc);
-       UART1_write_text(" V");
-       UART1_write(13);
-       UART1_write(10);
 }
 
 long calcula_tensaoVcc(){
@@ -878,6 +857,27 @@ void serial_principal(){
         UART1_Write(10);
         UART1_Write(13);
         
+}
+
+void exibe_tensaoVcc_terminal(){
+     int ajuste = 15;
+     float anterior;
+
+     store_Vcc = calcula_TensaoVcc();
+     tensaoVcc = (store_Vcc*20)/1023;
+     FloatToStr_FixLen(tensaoVcc, txt_tensao_vcc, 4);
+     ltrim(txt_tensao_vcc);
+
+     if(store_Vcc >= anterior+ajuste || store_Vcc <= anterior-ajuste){
+       strcpy(tensao_VccAnterior, txt_tensao_Vcc);
+       anterior = store_Vcc;
+       //UART1_write(12);
+     }
+       UART1_write_text("Bateria: ");
+       UART1_write_text(txt_tensao_Vcc);
+       UART1_write_text(" V");
+       UART1_write(13);
+       UART1_write(10);
 }
 
 void serial_emergencia(){
