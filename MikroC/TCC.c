@@ -398,6 +398,7 @@ void main (void)
                    case 5: tela(menu5); tela_tensaoVCC(); break;
                    }
               tratamento_botoes();
+              pre_aquecimento();
               
               while(BTN_EMERGENCIA){ //Quando emergencia é ativada pelo botão de emergencia
                    emergencia();
@@ -548,6 +549,22 @@ void tratamento_botoes(){
 }
 
 void pre_aquecimento(){
+       float max = 60;
+       float min = 45;
+       float temp;
+       float prov;
+       
+       prov = calcula_temperatura();
+       temp = (prov / 1023) * 100;
+       
+
+       if(temp <= min){
+             PRE_AQUEC = 1;
+       }
+
+       if(temp >= max){
+             PRE_AQUEC = 0;
+       }
 
 }
 
@@ -590,7 +607,7 @@ void exibe_temperatura(){
      ltrim(txt_temp_motor);
 
      if(store_temp >= anterior + ajuste || store_temp <= anterior - ajuste){
-       Glcd_Box(70, 15, 89, 30, 0);
+       Glcd_Box(70, 15, 92, 30, 0);
        strcpy(temp_motorAnterior, txt_temp_motor);
        Glcd_Write_Text_Adv("Temperatura: ", 10, 15);
        Glcd_Write_Text_Adv(txt_temp_motor, 72, 15);
