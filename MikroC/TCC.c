@@ -335,7 +335,7 @@ void main (void)
 
 // Registradores de Configuração:
         // configurando de an0 até an3 como analogico, ver tabela datasheet página 260
-        ADCON1 |= 0b00001011;
+        ADCON1 |= 0b00001100;
         CMCON  |= 7;
 
 // Configuração dos PORTS de Entrada e Saida
@@ -485,10 +485,12 @@ void tratamento_botoes(){
 
  if(botao >= 200 && botao <= 220){                                      // Botão parar gerador
     Glcd_Write_Text_Adv("Parar GMG", 5, 30);
+    PRE_AQUEC = 1;
  }
  
  if(botao >= 230 && botao <= 240){                                      // Botão parte gerador
    Glcd_Write_Text_Adv("Partir GMG", 5, 30);
+   PRE_AQUEC = 0;
  }
 
  if(botao >= 310 && botao <= 330){                                      // Botão Automático
@@ -498,12 +500,12 @@ void tratamento_botoes(){
 
  if(botao >= 590 && botao <= 610){                                      // Botão Manual
     Glcd_Write_Text_Adv("Manual", 5, 30);
-    SOLENOIDE = !SOLENOIDE;
+    PRE_AQUEC = !PRE_AQUEC;
  }
 
  if(botao >= 680 && botao <= 700) {                                     // Botão Reset
     Glcd_Write_Text_Adv("Reset", 5, 30);
-    PRE_AQUEC = !PRE_AQUEC;
+    SOLENOIDE = !SOLENOIDE;
  }
 
  if(botao >= 830 && botao <= 850){                                      // Botão >> (direita)
