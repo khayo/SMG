@@ -298,10 +298,6 @@ void main (void)
 
         max_tela = 6;
 
-
-//Variavel para controle de exibição da tensao de rede na tela, serve para apagar a tensão anterior exibida para mostrar a nova
-        tensao_anterior_rede_r = 0;
-        temp_anterior_motor = 0;
 // Declaração de variáveis locais
 
 //int x;
@@ -371,9 +367,9 @@ void main (void)
               tratamento_botoes();
               pre_aquecimento();
               
-              if(automatico == 1){
-              };
-              
+              /*if(automatico == 1){
+              };*/
+
               
               while(BTN_EMERGENCIA){ //Quando emergencia é ativada pelo botão de emergencia
                    emergencia();

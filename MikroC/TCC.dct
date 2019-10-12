@@ -252,7 +252,6 @@ cmip
 cmip_bit
 comfrem
 compare_double
-corrente_rede_r
 crc16ee
 crc16ee_bit
 crc16ef
@@ -1339,8 +1338,6 @@ tela_tensaovcc
 temp_anterior_motor
 temp_motor
 temp_motoranterior
-tensao_anterior_rede_r
-tensao_rede_r
 tensao_vccanterior
 tensaovcc
 tmr0h
@@ -1503,7 +1500,6 @@ txreg
 txsta
 txt_botao
 txt_temp_motor
-txt_tensao_rede_r
 txt_tensao_vcc
 ua
 ua_bit
