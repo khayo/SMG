@@ -46,8 +46,7 @@ File1=Glcd_Fonts
 File2=ADC
 File3=Conversions
 File4=C_String
-File5=UART
-Count=6
+Count=5
 [INTERRUPT_DEFS]
 VECTOR_MODE=0
 IVT_BASE=00000008

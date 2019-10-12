@@ -360,16 +360,6 @@ void main (void)
         menu5 = "5 - Tensao Bateria";
 
         max_tela = 6;
-        
-        UART1_Init(9600);
-        delay_ms(100);
-        UART1_Write_Text("Start");
-        UART1_Write(10);
-        UART1_Write(13);
-        UART1_write_text("Pressione H para ajuda");
-        UART1_Write(10);
-        UART1_Write(13);
-
 
 
 //Variavel para controle de exibição da tensao de rede na tela, serve para apagar a tensão anterior exibida para mostrar a nova
@@ -443,15 +433,10 @@ void main (void)
               //serial_menu();
               
               while(BTN_EMERGENCIA){ //Quando emergencia é ativada pelo botão de emergencia
-                   UART1_Write(12);
-                   UART1_write_text("MODO DE EMERGENCIA ATIVADO");
                    emergencia();
 
                    }
-              while(emerg){ //quando emergencia é ativada pelo terminal
 
-                   emergencia();
-                   }
 
           }//fecha o while
 }//fecha o void main
