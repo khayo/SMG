@@ -462,7 +462,6 @@ epstall_uep8_bit
 epstall_uep9_bit
 equals_double
 exibe_temperatura
-exibe_tensaovca
 exibe_tensaovcc
 f
 fast
@@ -1508,7 +1507,6 @@ txt_tensao_vcc
 ua
 ua_bit
 uaddr
-uart_rd
 ucfg
 ucon
 ueie

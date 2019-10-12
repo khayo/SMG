@@ -45,9 +45,12 @@ char GLCD_DataPort at PORTD;
 //*******************************
 // PORTA , do RA0 até RA6
 //*******************************
-sbit PRE_AQUEC at RA3_BIT;
-sbit SOLENOIDE at RA4_BIT;
-sbit MOTOR_PAR at RA5_BIT;
+#define SENS_TEMP 0
+#define BTN_TECLA 1
+#define SENSO_VCC 2
+sbit PRE_AQUEC at PORTA.B3;
+sbit SOLENOIDE at PORTA.B4;
+sbit MOTOR_PAR at PORTA.B5;
 
 //*******************************
 // PORTB , do RB0 até RB7
@@ -158,7 +161,6 @@ char *menu5;
 // int contador;
 
 char txt_tensao_rede_r[7];
-char uart_rd;
 
 //=====================================================================================
 //                        DECLARAÇÃO DOS PROTÓTIPOS
@@ -341,11 +343,10 @@ void main (void)
 // 1 -> configura o BIT como Entrada
 
         //Port A, do RA0 até RA6
-        TRISA = 0b11111111;  // todos os BITs do PORTA estão configurados como entrada
+        TRISA = 0b000111;
 
         //Port B, do RB0 até RB7
         //TRISB = 0b00000000; // todos os BITs do PORTB estão configurados como saída
-
 
         //Port C, RC0,RC1,RC2,RC4,RC5,RC6 e RC7
         TRISC = 0b10000000; // todos os BITs do PORTC estão configurados como saída
@@ -395,7 +396,6 @@ void main (void)
                    case 5: tela(menu5); tela_tensaoVCC(); break;
                    }
               tratamento_botoes();
-              //serial_menu();
               
               while(BTN_EMERGENCIA){ //Quando emergencia é ativada pelo botão de emergencia
                    emergencia();
@@ -450,7 +450,7 @@ void liga_gerador(){
 }
 
 void tratamento_botoes(){
- botao = adc_read(1);
+ botao = adc_read(BTN_TECLA);
  if(botao > 10){                                                       // Verifica se algum botão foi apertado
     Glcd_Box(5, 30, 80, 40, 0);                                        // Caso algum botão tenha sido pressionado, limpa a area de título
  }
@@ -493,17 +493,17 @@ void tratamento_botoes(){
 
  if(botao >= 310 && botao <= 330){                                      // Botão Automático
    Glcd_Write_Text_Adv("Automatico", 5, 30);
-   SOLENOIDE = !SOLENOIDE;
+   MOTOR_PAR = !MOTOR_PAR;
  }
 
  if(botao >= 590 && botao <= 610){                                      // Botão Manual
     Glcd_Write_Text_Adv("Manual", 5, 30);
-    PRE_AQUEC = !PRE_AQUEC;
+    SOLENOIDE = !SOLENOIDE;
  }
 
  if(botao >= 680 && botao <= 700) {                                     // Botão Reset
     Glcd_Write_Text_Adv("Reset", 5, 30);
-    MOTOR_PAR = !MOTOR_PAR;
+    PRE_AQUEC = !PRE_AQUEC;
  }
 
  if(botao >= 830 && botao <= 850){                                      // Botão >> (direita)
@@ -566,7 +566,7 @@ long calcula_temperatura(){
      float temp_store = 0;
 
      for(i = 0; i < 100 ; i++){
-           temp_store += adc_read(0);
+           temp_store += adc_read(SENS_TEMP);
      }
 
      return(temp_store/100);
@@ -596,31 +596,10 @@ long calcula_tensaoVcc(){
      float volt_store = 0;
      
      for(i = 0; i < 100 ; i++){
-           volt_store += adc_read(2);
+           volt_store += adc_read(SENSO_VCC);
      }
 
      return(volt_store/100);
-}
-
-void exibe_tensaoVca(){
-     unsigned char i;
-     for (i = 0; i < 200; i++){
-        tensao_rede_r += adc_read(2);
-        delay_ms(1);
-     }
-
-     tensao_rede_r = tensao_rede_r / 200;
-
-     if(tensao_rede_r != tensao_anterior_rede_r){
-       Glcd_Box(60, 5, 100, 30, 0);
-       tensao_anterior_rede_r = tensao_rede_r;
-       tensao_rede_r = tensao_rede_r * 0.244140625;
-       IntToStr(tensao_rede_r, txt_tensao_rede_r);
-       ltrim(txt_tensao_rede_r);
-       Glcd_Write_Text_Adv("Tensao R: ", 5, 5);
-       Glcd_Write_Text_Adv(txt_tensao_rede_r, 60, 5);
-       Glcd_Write_Text_Adv("V", 80, 5);
-     }
 }
 
 void tela(char *_menu){
