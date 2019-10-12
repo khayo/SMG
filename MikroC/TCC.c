@@ -256,6 +256,8 @@ void exibe_tensaoVca();
 
 void calibra_botoes();
 
+void pre_aquecimento();
+
 
 /*************************************************************
       INICIO DAS ROTINAS DE FUNCIONAMENTO
@@ -545,6 +547,10 @@ void tratamento_botoes(){
 
 }
 
+void pre_aquecimento(){
+
+}
+
 void exibe_tensaoVcc(){
      int ajuste = 15;
      float anterior;
@@ -571,14 +577,14 @@ long calcula_temperatura(){
            temp_store += adc_read(SENS_TEMP);
      }
 
-     return(temp_store/100);
+     return((temp_store/100)*5);
 }
 
 void exibe_temperatura(){
      int ajuste = 1;
      float anterior;
 
-     store_temp = calcula_temperatura()*5;
+     store_temp = calcula_temperatura();
      temp_motor = (store_temp/1023)*100;
      FloatToStr_FixLen(temp_motor, txt_temp_motor, 4);
      ltrim(txt_temp_motor);
