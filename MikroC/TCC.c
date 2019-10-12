@@ -615,7 +615,7 @@ void exibe_tensaoVcc(){
      float anterior;
 
      store_Vcc = calcula_TensaoVcc();
-     tensaoVcc = (store_Vcc*20)/1023;
+     tensaoVcc = (store_Vcc*30)/1023;
      FloatToStr_FixLen(tensaoVcc, txt_tensao_vcc, 4);
      ltrim(txt_tensao_vcc);
      
