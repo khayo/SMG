@@ -684,7 +684,7 @@ long calcula_tensaoVcc(){
      float volt_store = 0;
      
      for(i = 0; i < 100 ; i++){
-           volt_store += adc_read(3);
+           volt_store += adc_read(2);
      }
 
      return(volt_store/100);
