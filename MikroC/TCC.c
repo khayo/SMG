@@ -2,7 +2,7 @@
 Projeto        :      SMG
 Descrição      :      Sistema de monitoramento e  controle de grupos geradores
 Inicio         :      Dezembro/2018
-Termino        :      Outubro/2019
+Termino        :      Novembro/2019
 Membros        :      Caio Pavan
                       Guilherme Gil
                       Gustavo Vinicius
@@ -118,28 +118,12 @@ int carregar_barraCarga;
 int carga;
 
 // Variaveis conversor AD
-//Tensão
-long tensao_rede_r;
-float tensao_anterior_rede_r;
-/*float tensao_rede_s;
-float tensao_rede_t;
-float tensao_gerador_r;
-float tensao_gerador_s;
-float tensao_gerador_t;*/
 
 //Tensão Contínua
 float tensaoVcc;
 float store_Vcc;
 char tensao_VccAnterior[7];
 char txt_tensao_vcc[7];
-
-//Corrente
-float corrente_rede_r;
-/*float corrente_rede_s;
-float corrente_rede_t;
-float corrente_gerador_r;
-float corrente_gerador_s;
-float corrente_gerador_t;*/
 
 //Temperatura motor
 float temp_motor;
@@ -148,7 +132,6 @@ float store_temp;
 char temp_motorAnterior[7];
 char txt_temp_motor[7];
 
-
 //constante para tela
 char *menu0;
 char *menu1;
@@ -156,11 +139,6 @@ char *menu2;
 char *menu3;
 char *menu4;
 char *menu5;
-
-
-// int contador;
-
-char txt_tensao_rede_r[7];
 
 //=====================================================================================
 //                        DECLARAÇÃO DOS PROTÓTIPOS
@@ -242,13 +220,6 @@ void exibe_temperatura();
 //função para calculo da temperatura
 long calcula_temperatura();
 
-//função para leitura da corrente
-
-//função para leitura da frequência
-
-//função para leitura da tensão
-void exibe_tensaoVca();
-
 /*************************************************************
       FIM DA LEITURA DE SENSORES
 *************************************************************/
@@ -274,7 +245,7 @@ void desliga_gmg();
 void parada_emergencia();
 
 //exibe erros de partida e funcionamento
-void avisos();
+void erros();
 
 
 
@@ -399,6 +370,10 @@ void main (void)
                    }
               tratamento_botoes();
               pre_aquecimento();
+              
+              if(automatico == 1){
+              };
+              
               
               while(BTN_EMERGENCIA){ //Quando emergencia é ativada pelo botão de emergencia
                    emergencia();
