@@ -207,7 +207,7 @@ void liga_gerador();
 
 //Menus: cada rotina chamará um menu ou sub-menu, assim é possível fazer um melhor controlex
 
-void serial_transferencia();
+/*void serial_transferencia();
 
 void serial_menu();
 
@@ -215,7 +215,7 @@ void serial_emergencia();
 
 void serial_principal();
 
-void exibe_tensaoVcc_terminal();
+void exibe_tensaoVcc_terminal();*/
 
 
 /*************************************************************
@@ -440,7 +440,7 @@ void main (void)
                    case 5: tela(menu5); tela_tensaoVCC(); break;
                    }
               tratamento_botoes();
-              serial_menu();
+              //serial_menu();
               
               while(BTN_EMERGENCIA){ //Quando emergencia é ativada pelo botão de emergencia
                    UART1_Write(12);
@@ -763,7 +763,7 @@ void tela_temperatura(){
 }
 
 //Funções de controle serial
-void serial_menu(){
+/*void serial_menu(){
      if(UART1_Data_Ready()){
      uart_rd = UART1_Read();
      //UART1_Write(uart_rd); //habilita eco
@@ -824,7 +824,7 @@ void serial_menu(){
             /*UART1_write_text("CONTROLE SERIAL DESABILITADO POR MOTIVO DE SEGURANÇA");
             UART1_Write(10);
             UART1_Write(13);
-            UART1_Write(emerg);*/
+            UART1_Write(emerg);
          }
          if(uart_rd == 'H'){
             serial_principal();
@@ -856,7 +856,7 @@ void serial_principal(){
         UART1_Write_Text("L - Limpa tela");
         UART1_Write(10);
         UART1_Write(13);
-        
+
 }
 
 void exibe_tensaoVcc_terminal(){
@@ -921,7 +921,7 @@ void serial_transferencia(){
         UART1_Write(10);
         UART1_Write(13);
 
-}
+}*/
 
 
 

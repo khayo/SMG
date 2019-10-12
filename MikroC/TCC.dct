@@ -465,7 +465,6 @@ equals_double
 exibe_temperatura
 exibe_tensaovca
 exibe_tensaovcc
-exibe_tensaovcc_terminal
 f
 fast
 ferr
@@ -1138,10 +1137,6 @@ sen
 sen_bit
 sendb
 sendb_bit
-serial_emergencia
-serial_menu
-serial_principal
-serial_transferencia
 setfdz32
 setfov32
 setfun32
