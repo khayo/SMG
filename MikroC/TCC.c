@@ -643,7 +643,7 @@ void exibe_temperatura(){
      int ajuste = 5;
      float anterior;
 
-     store_temp = calcula_temperatura();
+     store_temp = calcula_temperatura()*5;
      temp_motor = (store_temp/1023)*100;
      FloatToStr_FixLen(temp_motor, txt_temp_motor, 4);
      ltrim(txt_temp_motor);
