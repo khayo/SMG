@@ -140,6 +140,10 @@ char *menu3;
 char *menu4;
 char *menu5;
 
+// Variaveis de controle de modo funcionamento
+int automatico = 0;
+int manual = 1;
+
 //=====================================================================================
 //                        DECLARAÇÃO DOS PROTÓTIPOS
 //=====================================================================================
@@ -347,6 +351,9 @@ void main (void)
         //mostra
         carga = 1;
         
+        // variaveis de manual e automático
+
+        
         PRE_AQUEC = 0;
         SOLENOIDE = 0;
         MOTOR_PAR = 0;
@@ -469,12 +476,18 @@ void tratamento_botoes(){
 
  if(botao >= 310 && botao <= 330){                                      // Botão Automático
    Glcd_Write_Text_Adv("Automatico", 5, 30);
-   MOTOR_PAR = !MOTOR_PAR;
+   if(automatico == 0){
+      manual = 0;
+      automatico = 1;
+   }
  }
 
  if(botao >= 590 && botao <= 610){                                      // Botão Manual
-    Glcd_Write_Text_Adv("Manual", 5, 30);
-    PRE_AQUEC = !PRE_AQUEC;
+   Glcd_Write_Text_Adv("Manual", 5, 30);
+   if(automatico == 1){
+      manual = 1;
+      automatico = 0;
+   }
  }
 
  if(botao >= 680 && botao <= 700) {                                     // Botão Reset
