@@ -2,7 +2,7 @@
 Projeto        :      SMG
 Descrição      :      Sistema de monitoramento e  controle de grupos geradores
 Inicio         :      Dezembro/2018
-Termino        :      Outubro/2019
+Termino        :      Novembro/2019
 Membros        :      Caio Pavan
                       Guilherme Gil
                       Gustavo Vinicius
@@ -87,7 +87,6 @@ sbit BTN_EMERGENCIA at PORTC.B2;
 //*******************************
 // PORTE , do RE0 até RE3
 //*******************************
-//Controle das saidas da transferência
 sbit RELE_REDE at PORTE.B0;
 sbit RELE_GERADOR at PORTE.B1;
 
@@ -118,14 +117,6 @@ int carregar_barraCarga;
 int carga;
 
 // Variaveis conversor AD
-//Tensão
-long tensao_rede_r;
-float tensao_anterior_rede_r;
-/*float tensao_rede_s;
-float tensao_rede_t;
-float tensao_gerador_r;
-float tensao_gerador_s;
-float tensao_gerador_t;*/
 
 //Tensão Contínua
 float tensaoVcc;
@@ -133,21 +124,12 @@ float store_Vcc;
 char tensao_VccAnterior[7];
 char txt_tensao_vcc[7];
 
-//Corrente
-float corrente_rede_r;
-/*float corrente_rede_s;
-float corrente_rede_t;
-float corrente_gerador_r;
-float corrente_gerador_s;
-float corrente_gerador_t;*/
-
 //Temperatura motor
 float temp_motor;
 float temp_anterior_motor;
 float store_temp;
 char temp_motorAnterior[7];
 char txt_temp_motor[7];
-
 
 //constante para tela
 char *menu0;
@@ -157,10 +139,16 @@ char *menu3;
 char *menu4;
 char *menu5;
 
+// Variaveis de controle de modo funcionamento
+int automatico = 0;
+int manual = 1;
 
-// int contador;
+// flag de status do gerador
+// 0 - deligado
+// 1 - ligado em vazio
+// 2 - ligado em carga
 
-char txt_tensao_rede_r[7];
+int estado_gerador = 0;
 
 //=====================================================================================
 //                        DECLARAÇÃO DOS PROTÓTIPOS
@@ -242,13 +230,6 @@ void exibe_temperatura();
 //função para calculo da temperatura
 long calcula_temperatura();
 
-//função para leitura da corrente
-
-//função para leitura da frequência
-
-//função para leitura da tensão
-void exibe_tensaoVca();
-
 /*************************************************************
       FIM DA LEITURA DE SENSORES
 *************************************************************/
@@ -256,13 +237,18 @@ void exibe_tensaoVca();
 
 void calibra_botoes();
 
-void pre_aquecimento();
+
 
 
 /*************************************************************
       INICIO DAS ROTINAS DE FUNCIONAMENTO
 *************************************************************/
+void pre_aquecimento();
 
+void liga_solenoide_combustivel();
+void desliga_solenoide_combustivel();
+
+void motor_partida();
 
 //rotinas de ligação do equipamento: acionamento de solenoide forte, acionamento da solenoide fraca, liberação da solenoide forte, acionamento do motor de arranque, parada do motor de arranque
 void liga_gmg();
@@ -274,7 +260,7 @@ void desliga_gmg();
 void parada_emergencia();
 
 //exibe erros de partida e funcionamento
-void avisos();
+void erros();
 
 
 
@@ -327,10 +313,6 @@ void main (void)
 
         max_tela = 6;
 
-
-//Variavel para controle de exibição da tensao de rede na tela, serve para apagar a tensão anterior exibida para mostrar a nova
-        tensao_anterior_rede_r = 0;
-        temp_anterior_motor = 0;
 // Declaração de variáveis locais
 
 //int x;
@@ -380,9 +362,12 @@ void main (void)
         //mostra
         carga = 1;
         
+        // Valor inicial para as saidas digitais
         PRE_AQUEC = 0;
         SOLENOIDE = 0;
         MOTOR_PAR = 0;
+        
+        
 //=====================================================================================
 //         Inicio do Loop principal
 //=====================================================================================
@@ -391,13 +376,23 @@ void main (void)
           {
               switch (pos_painel) {
                    case 0: tela(menu0); tela_principal(); break;
-                   case 1: tela(menu1);  break;
-                   case 2: tela(menu2);  break;
-                   case 3: tela(menu3);  break;
+                   case 1: tela(menu1); break;
+                   case 2: tela(menu2); break;
+                   case 3: tela(menu3); break;
                    case 4: tela(menu4); tela_temperatura(); break;
                    case 5: tela(menu5); tela_tensaoVCC(); break;
                    }
               tratamento_botoes();
+              
+              if(estado_gerador == 0){
+                 pre_aquecimento();
+              }
+              
+              // quando equipamento estiver em automatico, as rotinas a baixo serão executas.
+              
+              /*if(automatico == 1){
+              };*/
+
               
               while(BTN_EMERGENCIA){ //Quando emergencia é ativada pelo botão de emergencia
                    emergencia();
@@ -424,6 +419,34 @@ void emergencia(){
        Glcd_Fill(0);
        carregar_tela = 1;
 }
+
+void liga_solenoide_combustivel(){
+       SOLENOIDE = 1;
+}
+
+void desliga_solenoide_combustivel(){
+       SOLENOIDE = 0;
+}
+
+void motor_partida(){
+       MOTOR_PAR = 1;
+       //CRIAR INTERRUPÇÃOD E 3S
+       delay_ms(3000); // somente para teste dos reles, deve ser feito por interrupção
+       MOTOR_PAR = 0;
+}
+
+void liga_gmg(){
+   liga_solenoide_combustivel();
+   motor_partida();
+   estado_gerador = 1;
+   PRE_AQUEC = 0;
+}
+
+void desliga_gmg(){
+   desliga_solenoide_combustivel();
+   estado_gerador = 0;
+}
+
 
 void desliga_carga(){
       RELE_GERADOR = 0;
@@ -487,22 +510,33 @@ void tratamento_botoes(){
 
  if(botao >= 200 && botao <= 220){                                      // Botão parar gerador
     Glcd_Write_Text_Adv("Parar GMG", 5, 30);
-    PRE_AQUEC = 1;
+   if(manual == 1 && (estado_gerador == 1 || estado_gerador == 2)){
+      desliga_gmg();
+      estado_gerador = 0;
+   }
  }
  
  if(botao >= 230 && botao <= 240){                                      // Botão parte gerador
    Glcd_Write_Text_Adv("Partir GMG", 5, 30);
-   PRE_AQUEC = 0;
+   if(manual == 1 && estado_gerador == 0){
+      liga_gmg();
+      estado_gerador = 1;
+   }
  }
 
- if(botao >= 310 && botao <= 330){                                      // Botão Automático
+ if(botao >= 310 && botao <= 330 && manual == 1){                       // Botão Automático
    Glcd_Write_Text_Adv("Automatico", 5, 30);
-   MOTOR_PAR = !MOTOR_PAR;
+      manual = 0;
+      automatico = 1;
+      carregar_tela = 1;
  }
 
- if(botao >= 590 && botao <= 610){                                      // Botão Manual
-    Glcd_Write_Text_Adv("Manual", 5, 30);
-    PRE_AQUEC = !PRE_AQUEC;
+ if(botao >= 590 && botao <= 610 && automatico == 1){                   // Botão Manual
+   Glcd_Write_Text_Adv("Manual", 5, 30);
+      manual = 1;
+      automatico = 0;
+      carregar_tela = 1;
+
  }
 
  if(botao >= 680 && botao <= 700) {                                     // Botão Reset
@@ -545,27 +579,44 @@ void tratamento_botoes(){
    }
  }
 
-}
+}// fecha rotina de tratamento de botões
 
 void pre_aquecimento(){
+       float max = 60;
+       float min = 45;
+       float temp;
+       float prov;
+       
+       prov = calcula_temperatura();
+       temp = (prov / 1023) * 100;
+       
+
+       if(temp <= min){
+             PRE_AQUEC = 1;
+       }
+
+       if(temp >= max){
+             PRE_AQUEC = 0;
+       }
 
 }
 
-void exibe_tensaoVcc(){
-     int ajuste = 15;
+void exibe_temperatura(){
+     int ajuste = 1;
      float anterior;
 
-     store_Vcc = calcula_TensaoVcc();
-     tensaoVcc = (store_Vcc*30)/1023;
-     FloatToStr_FixLen(tensaoVcc, txt_tensao_vcc, 4);
-     ltrim(txt_tensao_vcc);
-     
-     if(store_Vcc >= anterior+ajuste || store_Vcc <= anterior-ajuste){
-       Glcd_Box(70, 15, 89, 30, 0);
-       Glcd_Write_Text_Adv("Bateria: ", 10, 15);
-       Glcd_Write_Text_Adv(txt_tensao_Vcc, 70, 15);
-       Glcd_Write_Text_Adv("V ", 90, 15);
-       anterior = store_Vcc;  
+     store_temp = calcula_temperatura();
+     temp_motor = (store_temp/1023)*100;
+     FloatToStr_FixLen(temp_motor, txt_temp_motor, 4);
+     ltrim(txt_temp_motor);
+
+     if(store_temp >= anterior + ajuste || store_temp <= anterior - ajuste){
+       Glcd_Box(70, 15, 92, 30, 0);
+       strcpy(temp_motorAnterior, txt_temp_motor);
+       Glcd_Write_Text_Adv("Temperatura: ", 10, 15);
+       Glcd_Write_Text_Adv(txt_temp_motor, 72, 15);
+       Glcd_Write_Text_Adv("C ", 93, 15);
+       anterior = store_temp;
      }
 }
 
@@ -580,22 +631,21 @@ long calcula_temperatura(){
      return((temp_store/100)*5);
 }
 
-void exibe_temperatura(){
-     int ajuste = 1;
+void exibe_tensaoVcc(){
+     int ajuste = 15;
      float anterior;
 
-     store_temp = calcula_temperatura();
-     temp_motor = (store_temp/1023)*100;
-     FloatToStr_FixLen(temp_motor, txt_temp_motor, 4);
-     ltrim(txt_temp_motor);
+     store_Vcc = calcula_TensaoVcc();
+     tensaoVcc = (store_Vcc*30)/1023;
+     FloatToStr_FixLen(tensaoVcc, txt_tensao_vcc, 4);
+     ltrim(txt_tensao_vcc);
 
-     if(store_temp >= anterior + ajuste || store_temp <= anterior - ajuste){
+     if(store_Vcc >= anterior+ajuste || store_Vcc <= anterior-ajuste){
        Glcd_Box(70, 15, 89, 30, 0);
-       strcpy(temp_motorAnterior, txt_temp_motor);
-       Glcd_Write_Text_Adv("Temperatura: ", 10, 15);
-       Glcd_Write_Text_Adv(txt_temp_motor, 72, 15);
-       Glcd_Write_Text_Adv("C ", 93, 15);
-       anterior = store_temp;
+       Glcd_Write_Text_Adv("Bateria: ", 10, 15);
+       Glcd_Write_Text_Adv(txt_tensao_Vcc, 70, 15);
+       Glcd_Write_Text_Adv("V ", 90, 15);
+       anterior = store_Vcc;
      }
 }
 
@@ -616,6 +666,13 @@ void tela(char *_menu){
          Glcd_box(0, 0, 127, 12, 1);                                    // Cria a faixa preta de título
          Glcd_Set_Font_Adv(Glcd_defaultFont, 0, 0);                     // Troca a cor padrão da fonte para "branco"
          Glcd_Write_Text_Adv(_menu, 30, 1);                             // Escreve o nome do menu, que será "puxado" do switch contido no main
+         Glcd_Circle(118, 6, 6, 2);
+         if(automatico == 1){
+            Glcd_Write_Text_Adv( "A" , 115, 1);
+         }
+         if(manual == 1){
+            Glcd_Write_Text_Adv( "M" , 115, 1);
+         }
          Glcd_Set_Font_Adv(Glcd_defaultFont, 1, 0);                     // Volta a cor padrão de fonte para "preto"
          carregar_tela = 0;
          carregar_subTela = 1;                                          // Permite que a subtela seja carregada
@@ -681,83 +738,3 @@ void tela_temperatura(){
      }
      exibe_temperatura();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//=====================================================================================
-//                        CEMITÉRIO DE CÓDIGO
-//=====================================================================================
-
-
-// Trechos de código que foram substituidos ao longo do tempo
-// est]ao guardados para caso haja alguma falha
-
-
-//Menu antigo, com nome na parte inferior
-
-/*Glcd_Rectangle(1, 52, 31, 63, 1);
-        Glcd_Write_Text_Adv(menu1, 6, 52);
-
-        Glcd_Box(33, 52, 63, 63, 1);
-        Glcd_Set_Font_Adv(Glcd_defaultFont, 0, 0);
-        Glcd_Write_Text_Adv(menu2, 38, 52);
-
-        Glcd_Rectangle(65, 52, 95, 63, 1);
-        Glcd_Set_Font_Adv(Glcd_defaultFont, 1, 0);
-        Glcd_Write_Text_Adv(menu3, 71, 52);
-
-        Glcd_Rectangle(97, 52, 127, 63, 1);
-        Glcd_Write_Text_Adv(menu4, 102, 52);*/
-        
-//Navegação com botões nas portas digitais
-
-/*//rotina responsavel pela navegação no painel
-void btn_painel()
-{
-btn_state_direita = BTN_DIREITA;
-btn_state_esquerda = BTN_ESQUERDA;
-
-        if(btn_state_direita != btn_last_state_direita && pos_painel < 3){
-         if(BTN_DIREITA == 1){
-         pos_painel = pos_painel + 1;
-         Glcd_Fill(0);
-         }
-        }
-
-         if(btn_state_esquerda != btn_last_state_esquerda && pos_painel > 0){
-          if(BTN_ESQUERDA == 1){
-           pos_painel= pos_painel - 1;
-           Glcd_Fill(0);
-          }
-        }
- btn_last_state_direita = btn_state_direita;
- btn_last_state_esquerda = btn_state_esquerda;
-}*/
