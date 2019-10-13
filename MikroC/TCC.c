@@ -422,6 +422,16 @@ void motor_partida(){
        MOTOR_PAR = 0;
 }
 
+void liga_gmg(){
+   liga_solenoide_combustivel();
+   motor_partida();
+}
+
+void desliga_gmg(){
+   desliga_solenoide_combustivel();
+}
+
+
 void desliga_carga(){
       RELE_GERADOR = 0;
       RELE_REDE = 1;
