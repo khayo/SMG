@@ -87,7 +87,6 @@ sbit BTN_EMERGENCIA at PORTC.B2;
 //*******************************
 // PORTE , do RE0 até RE3
 //*******************************
-//Controle das saidas da transferência
 sbit RELE_REDE at PORTE.B0;
 sbit RELE_GERADOR at PORTE.B1;
 
@@ -365,14 +364,16 @@ void main (void)
           {
               switch (pos_painel) {
                    case 0: tela(menu0); tela_principal(); break;
-                   case 1: tela(menu1);  break;
-                   case 2: tela(menu2);  break;
-                   case 3: tela(menu3);  break;
+                   case 1: tela(menu1); break;
+                   case 2: tela(menu2); break;
+                   case 3: tela(menu3); break;
                    case 4: tela(menu4); tela_temperatura(); break;
                    case 5: tela(menu5); tela_tensaoVCC(); break;
                    }
               tratamento_botoes();
               pre_aquecimento();
+              
+              // quando equipamento estiver em automatico, as rotinas a baixo serão executas.
               
               /*if(automatico == 1){
               };*/
@@ -474,20 +475,19 @@ void tratamento_botoes(){
    PRE_AQUEC = 0;
  }
 
- if(botao >= 310 && botao <= 330){                                      // Botão Automático
+ if(botao >= 310 && botao <= 330 && manual == 1){                       // Botão Automático
    Glcd_Write_Text_Adv("Automatico", 5, 30);
-   if(automatico == 0){
       manual = 0;
       automatico = 1;
-   }
+      carregar_tela = 1;
  }
 
- if(botao >= 590 && botao <= 610){                                      // Botão Manual
+ if(botao >= 590 && botao <= 610 && automatico == 1){                   // Botão Manual
    Glcd_Write_Text_Adv("Manual", 5, 30);
-   if(automatico == 1){
       manual = 1;
       automatico = 0;
-   }
+      carregar_tela = 1;
+
  }
 
  if(botao >= 680 && botao <= 700) {                                     // Botão Reset
@@ -552,35 +552,6 @@ void pre_aquecimento(){
 
 }
 
-void exibe_tensaoVcc(){
-     int ajuste = 15;
-     float anterior;
-
-     store_Vcc = calcula_TensaoVcc();
-     tensaoVcc = (store_Vcc*30)/1023;
-     FloatToStr_FixLen(tensaoVcc, txt_tensao_vcc, 4);
-     ltrim(txt_tensao_vcc);
-     
-     if(store_Vcc >= anterior+ajuste || store_Vcc <= anterior-ajuste){
-       Glcd_Box(70, 15, 89, 30, 0);
-       Glcd_Write_Text_Adv("Bateria: ", 10, 15);
-       Glcd_Write_Text_Adv(txt_tensao_Vcc, 70, 15);
-       Glcd_Write_Text_Adv("V ", 90, 15);
-       anterior = store_Vcc;  
-     }
-}
-
-long calcula_temperatura(){
-     unsigned char i;
-     float temp_store = 0;
-
-     for(i = 0; i < 100 ; i++){
-           temp_store += adc_read(SENS_TEMP);
-     }
-
-     return((temp_store/100)*5);
-}
-
 void exibe_temperatura(){
      int ajuste = 1;
      float anterior;
@@ -597,6 +568,35 @@ void exibe_temperatura(){
        Glcd_Write_Text_Adv(txt_temp_motor, 72, 15);
        Glcd_Write_Text_Adv("C ", 93, 15);
        anterior = store_temp;
+     }
+}
+
+long calcula_temperatura(){
+     unsigned char i;
+     float temp_store = 0;
+
+     for(i = 0; i < 100 ; i++){
+           temp_store += adc_read(SENS_TEMP);
+     }
+
+     return((temp_store/100)*5);
+}
+
+void exibe_tensaoVcc(){
+     int ajuste = 15;
+     float anterior;
+
+     store_Vcc = calcula_TensaoVcc();
+     tensaoVcc = (store_Vcc*30)/1023;
+     FloatToStr_FixLen(tensaoVcc, txt_tensao_vcc, 4);
+     ltrim(txt_tensao_vcc);
+
+     if(store_Vcc >= anterior+ajuste || store_Vcc <= anterior-ajuste){
+       Glcd_Box(70, 15, 89, 30, 0);
+       Glcd_Write_Text_Adv("Bateria: ", 10, 15);
+       Glcd_Write_Text_Adv(txt_tensao_Vcc, 70, 15);
+       Glcd_Write_Text_Adv("V ", 90, 15);
+       anterior = store_Vcc;
      }
 }
 
@@ -617,6 +617,13 @@ void tela(char *_menu){
          Glcd_box(0, 0, 127, 12, 1);                                    // Cria a faixa preta de título
          Glcd_Set_Font_Adv(Glcd_defaultFont, 0, 0);                     // Troca a cor padrão da fonte para "branco"
          Glcd_Write_Text_Adv(_menu, 30, 1);                             // Escreve o nome do menu, que será "puxado" do switch contido no main
+         Glcd_Circle(118, 6, 6, 2);
+         if(automatico == 1){
+            Glcd_Write_Text_Adv( "A" , 115, 1);
+         }
+         if(manual == 1){
+            Glcd_Write_Text_Adv( "M" , 115, 1);
+         }
          Glcd_Set_Font_Adv(Glcd_defaultFont, 1, 0);                     // Volta a cor padrão de fonte para "preto"
          carregar_tela = 0;
          carregar_subTela = 1;                                          // Permite que a subtela seja carregada
@@ -712,53 +719,3 @@ void tela_temperatura(){
 
 
 
-
-//=====================================================================================
-//                        CEMITÉRIO DE CÓDIGO
-//=====================================================================================
-
-
-// Trechos de código que foram substituidos ao longo do tempo
-// est]ao guardados para caso haja alguma falha
-
-
-//Menu antigo, com nome na parte inferior
-
-/*Glcd_Rectangle(1, 52, 31, 63, 1);
-        Glcd_Write_Text_Adv(menu1, 6, 52);
-
-        Glcd_Box(33, 52, 63, 63, 1);
-        Glcd_Set_Font_Adv(Glcd_defaultFont, 0, 0);
-        Glcd_Write_Text_Adv(menu2, 38, 52);
-
-        Glcd_Rectangle(65, 52, 95, 63, 1);
-        Glcd_Set_Font_Adv(Glcd_defaultFont, 1, 0);
-        Glcd_Write_Text_Adv(menu3, 71, 52);
-
-        Glcd_Rectangle(97, 52, 127, 63, 1);
-        Glcd_Write_Text_Adv(menu4, 102, 52);*/
-        
-//Navegação com botões nas portas digitais
-
-/*//rotina responsavel pela navegação no painel
-void btn_painel()
-{
-btn_state_direita = BTN_DIREITA;
-btn_state_esquerda = BTN_ESQUERDA;
-
-        if(btn_state_direita != btn_last_state_direita && pos_painel < 3){
-         if(BTN_DIREITA == 1){
-         pos_painel = pos_painel + 1;
-         Glcd_Fill(0);
-         }
-        }
-
-         if(btn_state_esquerda != btn_last_state_esquerda && pos_painel > 0){
-          if(BTN_ESQUERDA == 1){
-           pos_painel= pos_painel - 1;
-           Glcd_Fill(0);
-          }
-        }
- btn_last_state_direita = btn_state_direita;
- btn_last_state_esquerda = btn_state_esquerda;
-}*/

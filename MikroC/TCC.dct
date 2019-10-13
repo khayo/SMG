@@ -107,6 +107,7 @@ an3
 an3_bit
 an4
 an4_bit
+automatico
 b0
 b1
 b2
@@ -788,6 +789,7 @@ lvv2_bit
 lvv3
 lvv3_bit
 main
+manual
 max_tela
 memchr
 memcmp
