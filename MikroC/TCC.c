@@ -385,7 +385,7 @@ void main (void)
               tratamento_botoes();
               
               if(estado_gerador == 0){
-              pre_aquecimento();
+                 pre_aquecimento();
               }
               
               // quando equipamento estiver em automatico, as rotinas a baixo serão executas.
@@ -438,10 +438,13 @@ void motor_partida(){
 void liga_gmg(){
    liga_solenoide_combustivel();
    motor_partida();
+   estado_gerador = 1;
+   PRE_AQUEC = 0;
 }
 
 void desliga_gmg(){
    desliga_solenoide_combustivel();
+   estado_gerador = 0;
 }
 
 
