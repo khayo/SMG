@@ -236,7 +236,8 @@ void pre_aquecimento();
 /*************************************************************
       INICIO DAS ROTINAS DE FUNCIONAMENTO
 *************************************************************/
-
+void liga_solenoide_combustivel();
+void desliga_solenoide_combustivel();
 
 //rotinas de ligação do equipamento: acionamento de solenoide forte, acionamento da solenoide fraca, liberação da solenoide forte, acionamento do motor de arranque, parada do motor de arranque
 void liga_gmg();
@@ -403,6 +404,14 @@ void emergencia(){
        }
        Glcd_Fill(0);
        carregar_tela = 1;
+}
+
+void liga_solenoide_combustivel(){
+       SOLENOIDE = 1;
+}
+
+void desliga_solenoide_combustivel(){
+       SOLENOIDE = 0;
 }
 
 void desliga_carga(){
@@ -689,33 +698,3 @@ void tela_temperatura(){
      }
      exibe_temperatura();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

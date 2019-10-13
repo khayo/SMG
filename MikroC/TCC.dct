@@ -321,6 +321,7 @@ delay_80us
 delay_8ms
 delay_cyc
 desliga_carga
+desliga_solenoide_combustivel
 dfn8ee
 dfn8ee_bit
 dfn8ef
@@ -751,6 +752,7 @@ late2
 late2_bit
 liga_gerador
 liga_rede
+liga_solenoide_combustivel
 longint2double
 longinttohex
 longinttostrwithzeros
