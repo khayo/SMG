@@ -143,6 +143,13 @@ char *menu5;
 int automatico = 0;
 int manual = 1;
 
+// flag de status do gerador
+// 0 - deligado
+// 1 - ligado em vazio
+// 2 - ligado em carga
+
+int estado_gerador = 0;
+
 //=====================================================================================
 //                        DECLARAÇÃO DOS PROTÓTIPOS
 //=====================================================================================
@@ -230,12 +237,14 @@ long calcula_temperatura();
 
 void calibra_botoes();
 
-void pre_aquecimento();
+
 
 
 /*************************************************************
       INICIO DAS ROTINAS DE FUNCIONAMENTO
 *************************************************************/
+void pre_aquecimento();
+
 void liga_solenoide_combustivel();
 void desliga_solenoide_combustivel();
 
@@ -353,12 +362,12 @@ void main (void)
         //mostra
         carga = 1;
         
-        // variaveis de manual e automático
-
-        
+        // Valor inicial para as saidas digitais
         PRE_AQUEC = 0;
         SOLENOIDE = 0;
         MOTOR_PAR = 0;
+        
+        
 //=====================================================================================
 //         Inicio do Loop principal
 //=====================================================================================
@@ -494,12 +503,16 @@ void tratamento_botoes(){
 
  if(botao >= 200 && botao <= 220){                                      // Botão parar gerador
     Glcd_Write_Text_Adv("Parar GMG", 5, 30);
-    PRE_AQUEC = 1;
+   if(manual == 1){
+      desliga_gmg();
+   }
  }
  
  if(botao >= 230 && botao <= 240){                                      // Botão parte gerador
    Glcd_Write_Text_Adv("Partir GMG", 5, 30);
-   PRE_AQUEC = 0;
+   if(manual == 1){
+      liga_gmg();
+   }
  }
 
  if(botao >= 310 && botao <= 330 && manual == 1){                       // Botão Automático

@@ -463,6 +463,7 @@ epstall_uep7_bit
 epstall_uep8_bit
 epstall_uep9_bit
 equals_double
+estado_gerador
 exibe_temperatura
 exibe_tensaovcc
 f
