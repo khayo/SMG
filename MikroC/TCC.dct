@@ -805,6 +805,7 @@ menu3
 menu4
 menu5
 motor_par
+motor_partida
 mul_16x16_s
 mul_16x16_u
 mul_32x32_fp

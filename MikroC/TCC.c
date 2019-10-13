@@ -239,6 +239,8 @@ void pre_aquecimento();
 void liga_solenoide_combustivel();
 void desliga_solenoide_combustivel();
 
+void motor_partida();
+
 //rotinas de ligação do equipamento: acionamento de solenoide forte, acionamento da solenoide fraca, liberação da solenoide forte, acionamento do motor de arranque, parada do motor de arranque
 void liga_gmg();
 
@@ -412,6 +414,12 @@ void liga_solenoide_combustivel(){
 
 void desliga_solenoide_combustivel(){
        SOLENOIDE = 0;
+}
+
+void motor_partida(){
+       MOTOR_PAR = 1;
+       //CRIAR INTERRUPÇÃOD E 3S
+       MOTOR_PAR = 0;
 }
 
 void desliga_carga(){
