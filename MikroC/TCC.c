@@ -383,7 +383,10 @@ void main (void)
                    case 5: tela(menu5); tela_tensaoVCC(); break;
                    }
               tratamento_botoes();
+              
+              if(estado_gerador == 0){
               pre_aquecimento();
+              }
               
               // quando equipamento estiver em automatico, as rotinas a baixo serão executas.
               
@@ -428,6 +431,7 @@ void desliga_solenoide_combustivel(){
 void motor_partida(){
        MOTOR_PAR = 1;
        //CRIAR INTERRUPÇÃOD E 3S
+       delay_ms(3000); // somente para teste dos reles, deve ser feito por interrupção
        MOTOR_PAR = 0;
 }
 
@@ -503,15 +507,17 @@ void tratamento_botoes(){
 
  if(botao >= 200 && botao <= 220){                                      // Botão parar gerador
     Glcd_Write_Text_Adv("Parar GMG", 5, 30);
-   if(manual == 1){
+   if(manual == 1 && (estado_gerador == 1 || estado_gerador == 2)){
       desliga_gmg();
+      estado_gerador = 0;
    }
  }
  
  if(botao >= 230 && botao <= 240){                                      // Botão parte gerador
    Glcd_Write_Text_Adv("Partir GMG", 5, 30);
-   if(manual == 1){
+   if(manual == 1 && estado_gerador == 0){
       liga_gmg();
+      estado_gerador = 1;
    }
  }
 
@@ -570,7 +576,7 @@ void tratamento_botoes(){
    }
  }
 
-}
+}// fecha rotina de tratamento de botões
 
 void pre_aquecimento(){
        float max = 60;
