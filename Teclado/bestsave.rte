@@ -80,10 +80,8 @@
    (Net #00000 
    (rule
    )
-   (wire (path BOT 101600  -2540120 -4555730 -2540120 -4549530 -1930590 -3940000
-     3760000 -3940000)
-    (connect (terminal pin 1K-0) (terminal pin SAIDAS-1))
-    (type protect)
+   (wire (path BOT 101600  -1596000 -6180000 -1596000 -4555730 -2540120 -4555730)
+    (connect (terminal pin TELA_OUT-19) (terminal pin 1K-0))
    )
    (wire (path BOT 101600  -5582920 -4555730 -5586490 -4555730)
     (connect (terminal wire) (terminal wire))
@@ -227,35 +225,6 @@
     (type protect)
    )
    )
-   (Net #00006 
-   (rule
-   )
-   (wire (path BOT 101600  -6604000 609600 -6400800 609600 -6400800 -3759200
-     -2540120 -3759200 -2540120 -3539730)
-    (connect (terminal wire) (terminal pin 1K-1))
-   )
-   (wire (path BOT 101600  -6604000 609600 -6604000 5382000 -7010000 5382000)
-    (connect (terminal wire) (terminal pin TELA_IN-0))
-   )
-   (wire (path BOT 101600  -6604000 609600 -6807200 609600 -6807200 556000
-     -7010000 556000)
-    (connect (terminal wire) (terminal pin TELA_IN-19))
-   )
-   (wire (path BOT 101600  3230000 -6180000 3230000 -5791200 -1596000 -5791200
-     -1596000 -6180000)
-    (connect (terminal pin TELA_OUT-0) (terminal pin TELA_OUT-19))
-   )
-   (wire (path BOT 101600  -2540120 -3539730 -2540120 -3533530 -2536320 -3537330
-     3760000 -3537330 3760000 -3543760)
-    (connect (terminal pin 1K-1) (terminal pin SAIDAS-0))
-    (type protect)
-   )
-   (wire (path TOP 101600  -7010000 5382000 -1660000 5382000 -1640000 5332630
-     -1640000 851042 3230000 -4018958 3230000 -6180000)
-    (connect (terminal pin TELA_IN-0) (terminal pin TELA_OUT-0))
-    (type protect)
-   )
-   )
    (Net #00007 
    (rule
    )
@@ -312,50 +281,46 @@
    (Net #00014 
    (rule
    )
-   (wire (path BOT 101600  2976000 -6180000 2976000 -5994400 -1342000 -5994400
-     -1342000 -6180000)
-    (connect (terminal pin TELA_OUT-1) (terminal pin TELA_OUT-18))
+   (wire (path BOT 101600  -11430000 -5276000 -12126200 -5276000)
+    (connect (terminal wire) (terminal pin PARTIR-3))
    )
-   (wire (path BOT 101600  -7010000 5128000 -6807200 5128000 -6807200 810000
-     -7010000 810000)
-    (connect (terminal pin TELA_IN-1) (terminal pin TELA_IN-18))
+   (wire (path BOT 101600  3175000 5016500 3329580 5016500 3581040 4765040)
+    (connect (terminal wire) (terminal pin AUTO-2))
+    (type protect)
    )
-   (wire (path BOT 101600  -12126200 -5276000 -11430000 -5276000)
-    (connect (terminal pin PARTIR-3) (terminal wire))
-   )
-   (wire (path BOT 101600  3760000 -4336240 3760000 -4978400 3864140 -4978400
-     3864140 -6400800 2976000 -6400800 2976000 -6180000)
-    (connect (terminal pin SAIDAS-2) (terminal pin TELA_OUT-1))
-   )
-   (wire (path BOT 101600  2235200 -5578300 2438400 -5578300)
+   (wire (path BOT 101600  127000 762000 63500 762000)
     (connect (terminal wire) (terminal wire))
     (type protect)
    )
-   (wire (path BOT 101600  -1016000 -5578300 2235200 -5578300)
+   (wire (path BOT 101600  190500 762000 127000 762000)
     (connect (terminal wire) (terminal wire))
     (type protect)
    )
-   (wire (path BOT 101600  -2032000 -5578300 -1727200 -5578300)
+   (wire (path BOT 101600  1968500 5016500 3175000 5016500)
     (connect (terminal wire) (terminal wire))
     (type protect)
    )
-   (wire (path BOT 101600  -1341999 -5578300 -1087999 -5578300)
+   (wire (path BOT 101600  63500 762000 22080 762000 -482960 1267040)
+    (connect (terminal wire) (terminal pin REDE-3))
+    (type protect)
+   )
+   (wire (path BOT 101600  1905000 5016500 1968500 5016500)
     (connect (terminal wire) (terminal wire))
     (type protect)
    )
-   (wire (path BOT 101600  -1087999 -5578300 -1016000 -5578300)
+   (wire (path BOT 101600  -10985500 -5276000 -11049000 -5276000)
     (connect (terminal wire) (terminal wire))
     (type protect)
    )
-   (wire (path BOT 101600  2438400 -5578300 2517940 -5578300 3760000 -4336240)
-    (connect (terminal wire) (terminal pin SAIDAS-2))
-    (type protect)
-   )
-   (wire (path BOT 101600  -1727200 -5578300 -1342000 -5578300)
+   (wire (path BOT 101600  -11049000 -5276000 -11112500 -5276000)
     (connect (terminal wire) (terminal wire))
     (type protect)
    )
-   (wire (path BOT 101600  -1342000 -5578300 -1341999 -5578300)
+   (wire (path BOT 101600  -11112500 -5276000 -11430000 -5276000)
+    (connect (terminal wire) (terminal wire))
+    (type protect)
+   )
+   (wire (path BOT 101600  1841500 5016500 1905000 5016500)
     (connect (terminal wire) (terminal wire))
     (type protect)
    )
@@ -367,24 +332,13 @@
     (connect (terminal wire) (terminal wire))
     (type protect)
    )
-   (wire (path BOT 101600  3760000 -4336240 4011460 -4084780 4011460 762000
-     3076000 762000)
-    (connect (terminal pin SAIDAS-2) (terminal wire))
+   (wire (path BOT 101600  1549040 1267040 1044000 762000 190500 762000)
+    (connect (terminal pin DESLIGA-3) (terminal wire))
     (type protect)
    )
-   (wire (path BOT 101600  -10744200 -5276000 -10744200 -5202800 -10368700 -5578300
-     -2032000 -5578300)
-    (connect (terminal pin PARAR-1) (terminal wire))
-    (type protect)
-   )
-   (wire (path BOT 101600  1549040 1267040 1044000 762000 22080 762000
-     -482960 1267040)
-    (connect (terminal pin DESLIGA-3) (terminal pin REDE-3))
-    (type protect)
-   )
-   (wire (path BOT 101600  1545290 4768790 1297580 5016500 -231500 5016500
-     -482960 4765040)
-    (connect (terminal wire) (terminal pin RST-2))
+   (wire (path BOT 101600  -482960 4765040 -231500 5016500 1297580 5016500
+     1545290 4768790)
+    (connect (terminal pin RST-2) (terminal wire))
     (type protect)
     (attr fanout)
    )
@@ -396,11 +350,11 @@
     (connect (terminal wire) (terminal pin DESLIGA-3))
     (type protect)
    )
-   (wire (path BOT 101600  3581040 4765040 3329580 5016500 1793000 5016500)
-    (connect (terminal pin AUTO-2) (terminal wire))
+   (wire (path BOT 101600  1793000 5016500 1841500 5016500)
+    (connect (terminal wire) (terminal wire))
     (type protect)
    )
-   (wire (path BOT 101600  1793000 5016500 1545290 4768790)
+   (wire (path BOT 101600  1545290 4768790 1793000 5016500)
     (connect (terminal wire) (terminal wire))
     (type protect)
    )
@@ -414,13 +368,13 @@
     (type protect)
     (attr fanout)
    )
-   (wire (path BOT 101600  3581040 1267040 3588540 1267040)
-    (connect (terminal pin GERADOR-3) (terminal wire))
+   (wire (path BOT 101600  3588540 1267040 3581040 1267040)
+    (connect (terminal wire) (terminal pin GERADOR-3))
     (type protect)
    )
-   (wire (path BOT 101600  3588540 1267040 3937000 1615500 3937000 4401580
-     3573540 4765040 3581040 4765040)
-    (connect (terminal wire) (terminal pin AUTO-2))
+   (wire (path BOT 101600  3581040 4765040 3573540 4765040 3937000 4401580
+     3937000 1615500 3588540 1267040)
+    (connect (terminal pin AUTO-2) (terminal wire))
     (type protect)
    )
    (wire (path BOT 101600  -12126200 -3242730 -12126200 -3244000 -10746740 -3244000
@@ -437,156 +391,177 @@
     (connect (terminal wire) (terminal wire))
     (type protect)
    )
-   (wire (path BOT 101600  -11430000 -5276000 -10744200 -5276000)
-    (connect (terminal wire) (terminal pin PARAR-1))
+   (wire (path BOT 101600  -10744200 -5276000 -10985500 -5276000)
+    (connect (terminal pin PARAR-1) (terminal wire))
     (type protect)
    )
    (wire (path BOT 101600  2941000 762000 2921000 762000 2667000 762000)
     (connect (terminal wire) (terminal wire))
     (type protect)
    )
-   (wire (path TOP 101600  -7010000 5128000 -1836302 5128000 -1833853 5125551
-     -1833853 815879 2930000 -3947974 2930000 -6134000 2976000 -6180000)
-    (connect (terminal pin TELA_IN-1) (terminal pin TELA_OUT-1))
-    (type protect)
-   )
-   )
-   (Net #00033 
-   (rule
-   )
-   (wire (path TOP 101600  -7010000 4874000 -7006000 4870000 -2042050 4870000
-     -2042050 774241 2725655 -3993464 2722000 -3997119 2722000 -6180000)
-    (connect (terminal pin TELA_IN-2) (terminal pin TELA_OUT-2))
-    (type protect)
-   )
-   )
-   (Net #00034 
-   (rule
-   )
-   (wire (path TOP 101600  -7010000 4620000 -7000000 4610000 -2241965 4610000
-     -2241965 751964 2462393 -3952394 2468000 -3946787 2468000 -6180000)
-    (connect (terminal pin TELA_IN-3) (terminal pin TELA_OUT-3))
-    (type protect)
-   )
-   )
-   (Net #00035 
-   (rule
-   )
-   (wire (path TOP 101600  -7010000 4366000 -7006000 4370000 -2390000 4370000
-     -2387720 4307720 -2387720 687720 2214000 -3914000 2214000 -6180000)
-    (connect (terminal pin TELA_IN-4) (terminal pin TELA_OUT-4))
-    (type protect)
-   )
    )
    (Net #00036 
    (rule
    )
-   (wire (path TOP 101600  -7010000 4112000 -2680000 4112000 -2680000 667857
-     1960000 -3972143 1960000 -6180000)
-    (connect (terminal pin TELA_IN-5) (terminal pin TELA_OUT-5))
-    (type protect)
+   (wire (path BOT 101600  2214000 -6180000 2214000 -5334000 4191000 -5334000
+     4191000 5270500 -6794500 5270500 -6794500 4112000 -7010000 4112000)
+    (connect (terminal pin TELA_OUT-4) (terminal pin TELA_IN-5))
    )
    )
    (Net #00037 
    (rule
    )
-   (wire (path TOP 101600  -7010000 3858000 -2928000 3858000 -2920000 3850000
-     -2920000 640000 -2900000 620000 1706000 -3986000 1706000 -6180000)
-    (connect (terminal pin TELA_IN-6) (terminal pin TELA_OUT-6))
-    (type protect)
+   (wire (path BOT 101600  1960000 -6180000 1960000 -6477000 4318000 -6477000
+     4318000 5715000 -7366000 5715000 -7366000 3858000 -7010000 3858000)
+    (connect (terminal pin TELA_OUT-5) (terminal pin TELA_IN-6))
    )
    )
    (Net #00038 
    (rule
    )
-   (wire (path TOP 101600  -7010000 3604000 -3104540 3604000 -3104540 570000
-     1452000 -3986540 1452000 -6180000)
-    (connect (terminal pin TELA_IN-7) (terminal pin TELA_OUT-7))
-    (type protect)
+   (wire (path BOT 101600  1706000 -6180000 1706000 -5055105 4064000 -5055105
+     4064000 5143500 -6667500 5143500 -6667500 3604000 -7010000 3604000)
+    (connect (terminal pin TELA_OUT-6) (terminal pin TELA_IN-7))
    )
    )
    (Net #00039 
    (rule
    )
-   (wire (path TOP 101600  -7010000 3350000 -3337276 3350000 -3337276 571826
-     1198000 -3963450 1198000 -6180000)
-    (connect (terminal pin TELA_IN-8) (terminal pin TELA_OUT-8))
-    (type protect)
+   (wire (path BOT 101600  1452000 -6180000 1452000 -6604000 4445000 -6604000
+     4445000 5842000 -7493000 5842000 -7493000 3350000 -7010000 3350000)
+    (connect (terminal pin TELA_OUT-7) (terminal pin TELA_IN-8))
    )
    )
    (Net #00040 
    (rule
    )
-   (wire (path BOT 101600  944000 -6180000 944000 -6604000 4165600 -6604000
-     4165600 5588000 -7213600 5588000 -7213600 3096000 -7010000 3096000)
-    (connect (terminal pin TELA_OUT-9) (terminal pin TELA_IN-9))
+   (wire (path BOT 101600  1198000 -6180000 1198000 -6731000 4572000 -6731000
+     4572000 5969000 -7620000 5969000 -7620000 3096000 -7010000 3096000)
+    (connect (terminal pin TELA_OUT-8) (terminal pin TELA_IN-9))
    )
    )
    (Net #00041 
    (rule
    )
-   (wire (path BOT 101600  -7010000 2842000 -7416800 2842000 -7416800 5791200
-     4368800 5791200 4368800 -6807200 690000 -6807200 690000 -6180000)
-    (connect (terminal pin TELA_IN-10) (terminal pin TELA_OUT-10))
+   (wire (path BOT 101600  944000 -6180000 944000 -6985000 4826000 -6985000
+     4826000 6223000 -8001000 6223000 -8001000 2842000 -7010000 2842000)
+    (connect (terminal pin TELA_OUT-9) (terminal pin TELA_IN-10))
    )
    )
    (Net #00042 
    (rule
    )
-   (wire (path BOT 101600  436000 -6180000 436000 -7213600 4572000 -7213600
-     4572000 5994400 -7620000 5994400 -7620000 2588000 -7010000 2588000)
-    (connect (terminal pin TELA_OUT-11) (terminal pin TELA_IN-11))
+   (wire (path BOT 101600  690000 -6180000 690000 -6667500 -13652500 -6667500
+     -13652500 2588000 -7010000 2588000)
+    (connect (terminal pin TELA_OUT-10) (terminal pin TELA_IN-11))
    )
    )
    (Net #00043 
    (rule
    )
-   (wire (path BOT 101600  182000 -6180000 182000 -7823200 4978400 -7823200
-     4978400 6400800 -8026400 6400800 -8026400 2334000 -7010000 2334000)
-    (connect (terminal pin TELA_OUT-12) (terminal pin TELA_IN-12))
+   (wire (path BOT 101600  436000 -6180000 436000 -3746500 -5778500 -3746500
+     -5778500 4000500 -889000 4000500 -889000 5016500 -6350000 5016500
+     -6350000 2334000 -7010000 2334000)
+    (connect (terminal pin TELA_OUT-11) (terminal pin TELA_IN-12))
    )
    )
    (Net #00044 
    (rule
    )
-   (wire (path BOT 101600  -7010000 2080000 -14020800 2080000 -14020800 -7315200
-     -72000 -7315200 -72000 -6180000)
-    (connect (terminal pin TELA_IN-13) (terminal pin TELA_OUT-13))
+   (wire (path BOT 101600  182000 -6180000 182000 -4000500 -6413500 -4000500
+     -6413500 2080000 -7010000 2080000)
+    (connect (terminal pin TELA_OUT-12) (terminal pin TELA_IN-13))
    )
    )
    (Net #00045 
    (rule
    )
-   (wire (path BOT 101600  -326000 -6180000 -326000 -6908800 -13817600 -6908800
-     -13817600 1826000 -7010000 1826000)
-    (connect (terminal pin TELA_OUT-14) (terminal pin TELA_IN-14))
+   (wire (path BOT 101600  -72000 -6180000 -72000 -6540500 -13398500 -6540500
+     -13398500 1825999 -7493000 1825999 -7493000 1826000 -7010000 1826000)
+    (connect (terminal pin TELA_OUT-13) (terminal pin TELA_IN-14))
    )
    )
    (Net #00046 
    (rule
    )
-   (wire (path BOT 101600  -7010000 1572000 -13614400 1572000 -13614400 -6705600
-     -580000 -6705600 -580000 -6180000)
-    (connect (terminal pin TELA_IN-15) (terminal pin TELA_OUT-15))
+   (wire (path BOT 101600  -326000 -6180000 -326000 -6413500 -12573000 -6413500
+     -12573000 -3017730 -11112500 -3017730 -11112500 -2540000 -10541000 -2540000
+     -10541000 -5524500 -9334500 -5524500 -9334500 -4000500 -6667500 -4000500
+     -6667500 190500 -7302500 190500 -7302500 1572000 -7010000 1572000)
+    (connect (terminal pin TELA_OUT-14) (terminal pin TELA_IN-15))
    )
    )
    (Net #00047 
    (rule
    )
-   (wire (path BOT 101600  -7010000 1318000 -13411200 1318000 -13411200 -6502400
-     -834000 -6502400 -834000 -6180000)
-    (connect (terminal pin TELA_IN-16) (terminal pin TELA_OUT-16))
+   (wire (path BOT 101600  -580000 -6180000 -580000 -4254500 -6540500 -4254500
+     -6540500 1318000 -7010000 1318000)
+    (connect (terminal pin TELA_OUT-15) (terminal pin TELA_IN-16))
    )
    )
-   (Net #00048 
+   (Net #00051 
    (rule
    )
-   (wire (path BOT 101600  -7010000 1064000 -7416800 1064000 -7416800 7175
-     -6604000 7175 -6604000 -3860800 -9517720 -3860800 -9517720 -5051000
-     -10363200 -5051000 -10363200 -3017730 -12496800 -3017730 -12496800 -3048000
-     -12541250 -3048000 -12541250 -5384800 -12496800 -5384800 -12496800 -6366600
-     -1088000 -6366600 -1088000 -6180000)
-    (connect (terminal pin TELA_IN-17) (terminal pin TELA_OUT-17))
+   )
+   (Net #00052 
+   (rule
+   )
+   )
+   (Net CS1 
+   (rule
+   )
+   (wire (path TOP 101600  3230000 -3698000 3230000 -6180000)
+    (connect (terminal wire) (terminal pin TELA_OUT-0))
+    (type protect)
+   )
+   (wire (path TOP 101600  -7010000 5382000 -5850000 5382000 3230000 -3698000)
+    (connect (terminal pin TELA_IN-0) (terminal wire))
+    (type protect)
+   )
+   )
+   (Net CS2 
+   (rule
+   )
+   (wire (path TOP 101600  -7010000 5128000 -5900000 5128000 2976000 -3748000
+     2976000 -6180000)
+    (connect (terminal pin TELA_IN-1) (terminal pin TELA_OUT-1))
+    (type protect)
+   )
+   )
+   (Net LED+ 
+   (rule
+   )
+   )
+   (Net LED- 
+   (rule
+   )
+   (wire (path TOP 101600  -2540120 -2873880 -5970000 556000 -7010000 556000)
+    (connect (terminal wire) (terminal pin TELA_IN-19))
+    (type protect)
+   )
+   (wire (path TOP 101600  -2540120 -2873880 -2540120 -2872000)
+    (connect (terminal wire) (terminal wire))
+    (type protect)
+    (attr fanout)
+   )
+   (wire (path TOP 101600  -2540120 -2873880 -2540120 -3539730)
+    (connect (terminal wire) (terminal pin 1K-1))
+    (type protect)
+    (attr fanout)
+   )
+   (wire (path TOP 101600  -7010000 4874000 -5920000 4874000 2540000 -3586000
+     2722000 -3768000 2722000 -6180000)
+    (connect (terminal pin TELA_IN-2) (terminal pin TELA_OUT-2))
+    (type protect)
+   )
+   )
+   (Net VCC 
+   (rule
+   )
+   (wire (path TOP 101600  -7010000 4620000 -5950000 4620000 2468000 -3798000
+     2468000 -6180000)
+    (connect (terminal pin TELA_IN-3) (terminal pin TELA_OUT-3))
+    (type protect)
    )
    )
   )
