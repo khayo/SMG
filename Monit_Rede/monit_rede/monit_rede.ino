@@ -1,19 +1,26 @@
 #include "EmonLib.h"             // Include Emon Library
 EnergyMonitor emon1;             // Create an instance
-
+int incomingByte = 0;
 void setup()
 {
   Serial.begin(9600);
 
-  emon1.voltage(2, 234.26, 1.7);  // Voltage: input pin, calibration, phase_shift
-  emon1.current(1, 111.1);       // Current: input pin, calibration.
+  emon1.current(1, 111.1);             // Current: input pin, calibration.
+  
 }
 
 void loop()
 {
-  if(Serial.read() == "H")
-  {
-    emon1.calcVI(20,2000);         // Calculate all. No.of wavelengths, time-out
-  emon1.serialprint();           // Print out all variables
+    if (Serial.available() > 0) {
+    // lê do buffer o dado recebido:
+    incomingByte = Serial.read();
+
+    if(incomingByte == 49){ // 49 corresponde ao numero 1
+      double Irms = emon1.calcIrms(1480);
+      Serial.println(Irms);             // Irms
+    }
   }
+  
+  
+  
 }
