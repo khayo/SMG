@@ -6,7 +6,7 @@ Value=0
 [BUILD_TYPE]
 Value=0
 [ACTIVE_TAB]
-Value=TCC.c
+Value=..\..\..\Users\khayo\Documents\MikroC\ComunicacaoUART.c
 [USE_EEPROM]
 Value=0
 [USE_HEAP]
@@ -24,7 +24,7 @@ Count=0
 Count=0
 ActiveImageIndex=-1
 [OPENED_FILES]
-File0=TCC.c
+File0=..\..\..\Users\khayo\Documents\MikroC\ComunicacaoUART.c
 Count=1
 [EEPROM]
 Count=0
@@ -65,7 +65,7 @@ Count=1
 144=EPSON_S1D13700
 181=FLASH
 859=UART
-Count=11
+Count=12
 [PROGRAMMER_TYPE]
 Value=mikroE mikroProg
 [CODEGRIP_OPTIONS]
