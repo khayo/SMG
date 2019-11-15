@@ -148,6 +148,7 @@ btsee
 btsee_bit
 btsef
 btsef_bit
+bvt
 byte2double
 bytetohex
 bytetostr
@@ -467,6 +468,7 @@ estado_gerador
 exibe_temperatura
 exibe_tensaovcc
 f
+falha_rede
 fast
 ferr
 ferr_bit

@@ -89,6 +89,7 @@ sbit BTN_EMERGENCIA at PORTC.B2;
 //*******************************
 sbit RELE_REDE at PORTE.B0;
 sbit RELE_GERADOR at PORTE.B1;
+sbit BVT at PORTE.B2;
 
 
 //=====================================================================================
@@ -262,6 +263,10 @@ void parada_emergencia();
 //exibe erros de partida e funcionamento
 void erros();
 
+void falha_partida();
+
+void falha_rede();
+
 
 
 /*************************************************************
@@ -339,7 +344,7 @@ void main (void)
         TRISD = 0b11110000; // todos os BITs do PORTD estão configurados como saída
 
         //Port E, do RE0 até RE3
-        TRISE = 0b00000000; // todos os BITs do PORTE estão configurados como saída
+        TRISE = 0b00000100; // todos os BITs do PORTE estão configurados como saída
 
         // zera as saidas
         PORTB = 0;
@@ -390,8 +395,14 @@ void main (void)
               
               // quando equipamento estiver em automatico, as rotinas a baixo serão executas.
               
-              /*if(automatico == 1){
-              };*/
+              if(automatico == 1){
+                  if(estado_gerador == 0){
+                      falha_rede();
+                  }
+                  else{
+                      retorno_rede();
+                  }
+              };
 
               
               while(BTN_EMERGENCIA){ //Quando emergencia é ativada pelo botão de emergencia
@@ -430,8 +441,8 @@ void desliga_solenoide_combustivel(){
 
 void motor_partida(){
        MOTOR_PAR = 1;
-       //CRIAR INTERRUPÇÃOD E 3S
-       delay_ms(3000); // somente para teste dos reles, deve ser feito por interrupção
+       //CRIAR INTERRUPÇÃOD E 2S
+       delay_ms(2000); // somente para teste dos reles, deve ser feito por interrupção
        MOTOR_PAR = 0;
 }
 
@@ -729,6 +740,16 @@ void tela_tensaoVCC(){
          carregar_subTela = 0;
      }   
      exibe_tensaoVcc();
+}
+
+void falha_rede(){
+     if(BVT == 0){
+        liga_gmg();
+        delay_ms(1000);
+        desliga_carga();
+        delay_ms(1000);
+        liga_gerador();
+     }
 }
 
 void tela_temperatura(){
