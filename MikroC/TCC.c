@@ -263,11 +263,9 @@ void parada_emergencia();
 //exibe erros de partida e funcionamento
 void erros();
 
-void falha_partida();
-
 void falha_rede();
 
-
+void retorno_rede();
 
 /*************************************************************
       FIM DAS ROTINAS DE FUNCIONAMENTO
@@ -749,6 +747,16 @@ void falha_rede(){
         desliga_carga();
         delay_ms(1000);
         liga_gerador();
+     }
+}
+
+void retorno_rede(){
+     if(BVT == 1){
+        desliga_carga();
+        delay_ms(1000);
+        liga_rede();
+        delay_ms(1000) ;
+        desliga_gmg();
      }
 }
 
