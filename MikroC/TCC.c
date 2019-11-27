@@ -308,13 +308,13 @@ void main (void)
 
 //nome dos menus
         menu0 = "   0 - Principal  ";
-        menu1 = " 1 - Tensao Rede  ";
-        menu2 = " 2 - Corrente Rede";
-        menu3 = "  3 - Frequencia  ";
-        menu4 = " 4 - Temperatura  ";
-        menu5 = "5 - Tensao Bateria";
+        //menu1 = " 1 - Tensao Rede  ";
+        //menu2 = " 2 - Corrente Rede";
+        //menu3 = "  3 - Frequencia  ";
+        menu1 = " 1 - Temperatura  ";
+        menu2 = "2 - Tensao Bateria";
 
-        max_tela = 6;
+        max_tela = 3;
 
 // Declaração de variáveis locais
 
@@ -354,7 +354,7 @@ void main (void)
         Glcd_Fill(0x00);                               // Clear GLCD
         
         //Variavel de posição do painel
-        pos_painel = 4;
+        pos_painel = 0;
         
         //Esta variável é inciada em 1 e no final do laço while, passa para 0. Quando um botão de navegação é pressionado, ela é alterada para 1, dessa forma possibilitando entrar no laço if que contem o código da tela
         carregar_tela = 1;
@@ -379,11 +379,11 @@ void main (void)
           {
               switch (pos_painel) {
                    case 0: tela(menu0); tela_principal(); break;
-                   case 1: tela(menu1); break;
-                   case 2: tela(menu2); break;
-                   case 3: tela(menu3); break;
-                   case 4: tela(menu4); tela_temperatura(); break;
-                   case 5: tela(menu5); tela_tensaoVCC(); break;
+                   case 1: tela(menu1); tela_temperatura(); break;
+                   case 2: tela(menu2); tela_tensaoVCC(); break;
+                 /*case 3: tela(menu3); break;
+                   case 4: tela(menu4);
+                   case 5: tela(menu5);*/
                    }
               tratamento_botoes();
               
