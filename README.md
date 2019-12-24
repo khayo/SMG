@@ -24,7 +24,7 @@ A IDE selecionada para desenvolver o projeto foi o MikroC devido a familiaridade
 Para simulações está sendo utilizado o Software Proteus, também escolhido devido a familiaridade dos membros com a ferramenta.
 
 ## Projeto Físico
-O Hardware está sendo desenvoldido em protoboard e após realização de testes de funcionamento, será montado em placa de circuito impresso.
+O Hardware está sendo desenvolvido em protoboard e após realização de testes de funcionamento, será montado em placa de circuito impresso.
 
 ## Monografia
 Também está disponivel neste repositório a monografia, por onde mostraremos os passos do desenvolvimento do projeto.
