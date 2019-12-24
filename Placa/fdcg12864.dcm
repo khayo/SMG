@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP FDCG12864
+D LCD graphical display 128x64
+K Display, Lcd, 128x64
+F https://datasheet.datasheetarchive.com/originals/library/Datasheets-UD2/DSAUD0021759.pdf
+$ENDCMP
+#
+#End Doc Library
